@@ -784,7 +784,7 @@
                     <h3 style="margin-top: 0;">Produto e Escala</h3>
                     <ul class="bullet-list" style="font-size: 18px;">
                         <li>Contratar Dev Pleno para white-label</li>
-                        <li>Lançar tier "IA Native Enterprise" (R$ 5-15k/mês)</li>
+                                                <li>Lançar tier "IA Native Enterprise" (R$ 10-20k/mês)</li>
                         <li>3 clientes IA Native ativos</li>
                         <li>Sistema self-service para Otimizadores</li>
                     </ul>
@@ -826,7 +826,7 @@
             </tr>
             <tr>
                 <td><span class="frente-badge frente-native">IA Native</span></td>
-                <td><strong>R$ 5.000-15.000</strong></td>
+                <td><strong>R$ 10.000-20.000</strong></td>
                 <td>Empresas 100+ func.</td>
                 <td>"Governança + segurança IA"</td>
             </tr>
@@ -1038,9 +1038,9 @@
 <!-- SLIDE 12: ENCERRAMENTO -->
 <div class="slide">
     <div class="content" style="text-align: center;">
-    <img src="simbolo-branco.png" alt="Hyperize" style="max-width: 450px; width: 70%; margin-bottom: 40px;">
+    <img src="logo-branco.png" alt="Hyperize" style="max-width: 450px; width: 70%; margin-bottom: 40px;">
         
-        <div class="subtitle" style="font-size: 32px; margin: 40px 0;">
+        <div class="subtitle" style="font-size: 32px; margin: 60px 0;">
             "Não vendemos IA.<br>
             Vendemos <span class="gradient-text">tempo economizado</span>,<br>
             <span class="gradient-text">resultado multiplicado</span><br>
@@ -1067,15 +1067,28 @@
 <script>
     // Fallback para logo
     document.addEventListener('DOMContentLoaded', function() {
+        // Primeiro corrige os nomes dos arquivos que estão com espaço para hífen
+        document.querySelectorAll('img').forEach(img => {
+            if (img.src.includes('simbolo branco.png')) {
+                img.src = 'simbolo-branco.png';
+            }
+            if (img.src.includes('logo branco.png')) {
+                img.src = 'logo-branco.png';
+            }
+        });
 
-
-
-
-
-
-
-
-
+        // Backup fallback para caso as imagens não carreguem
+        document.querySelectorAll('img[src*="logo"], img[src*="simbolo"]').forEach(logo => {
+            logo.onerror = function() {
+                const isWhite = this.src.includes('branco');
+                const isSymbol = this.src.includes('simbolo');
+                
+                if (isWhite) {
+                    this.src = isSymbol ? 'simbolo-azul.png' : 'logo-azul.png';
+                } else {
+                    this.src = isSymbol ? 'simbolo-branco.png' : 'logo-branco.png';
+                }
+            };
         });
     });
 

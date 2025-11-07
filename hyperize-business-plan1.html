@@ -1249,22 +1249,25 @@
 <script>
     // Fallback para logo
     document.addEventListener('DOMContentLoaded', function() {
-
-
-
-
-
-
-
-
-
+        document.querySelectorAll('img').forEach(img => {
+            if (img.src.includes('simbolo branco.png')) {
+                img.src = 'simbolo-branco.png';
+            } else if (img.src.includes('logo branco.png')) {
+                img.src = 'logo-branco.png';
+            }
         });
-    });
 
-    // Navegação com teclado
-    document.addEventListener('keydown', function(e) {
-        const slides = document.querySelectorAll('.slide');
-        const currentSlide = Math.round(window.pageYOffset / window.innerHeight);
+        // Backup fallback para imagens que não carregarem
+        document.querySelectorAll('img[src*="logo"], img[src*="simbolo"]').forEach(logo => {
+            logo.onerror = function() {
+                if (this.src.includes('simbolo')) {
+                    this.src = 'simbolo-azul.png';
+                } else if (this.src.includes('logo')) {
+                    this.src = 'logo-azul.png';
+                }
+            };
+        });
+    }); const currentSlide = Math.round(window.pageYOffset / window.innerHeight);
         
         if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
             e.preventDefault();

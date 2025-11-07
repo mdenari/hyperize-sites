@@ -531,7 +531,7 @@
 
 <!-- SLIDE 7: DIFERENCIAL COMPETITIVO -->
 <div class="slide">
-    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <img src="logo-branco-min.png" class="logo" alt="Hyperize">
     <div class="content">
         <h2>Por Que a Hyperize é Diferente</h2>
 
@@ -579,7 +579,7 @@
 
 <!-- SLIDE 8: PROCESSO DE ENTREGA -->
 <div class="slide">
-    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <img src="logo-branco-min.png" class="logo" alt="Hyperize">
     <div class="content">
         <h2>Como Entregamos</h2>
         <div class="subtitle">Metodologia comprovada de discovery a produção</div>
@@ -636,9 +636,9 @@
 
 <!-- SLIDE 9: ENCERRAMENTO -->
 <div class="slide">
-    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <img src="logo-branco-min.png" class="logo" alt="Hyperize">
     <div class="content" style="text-align: center;">
-        <img src="logo_branco_antigo.png" alt="Hyperize" style="max-width: 450px; width: 70%; margin-bottom: 40px;">
+        <img src="logo-branco.png" alt="Hyperize" style="max-width: 450px; width: 70%; margin-bottom: 40px;">
         
         <div class="subtitle" style="font-size: 32px; margin: 40px 0;">
             Hiperautomação e IA de Alto Impacto<br>
@@ -679,14 +679,22 @@
 <script>
     // Fallback para logo
     document.addEventListener('DOMContentLoaded', function() {
-        const logos = document.querySelectorAll('img[src="logo-branco-min.png"]');
-        logos.forEach(logo => {
-            logo.onerror = function() {
-                this.src = 'logo-branco.png';
-                this.onerror = function() {
-                    this.style.display = 'none';
-                    console.error('Logo não encontrado');
-                };
+        document.querySelectorAll('img').forEach(img => {
+            if (img.src.includes('logo_branco_min.png')) {
+                img.src = 'logo-branco-min.png';
+            } else if (img.src.includes('logo_branco_antigo.png')) {
+                img.src = 'logo-branco.png';
+            }
+        });
+
+        // Backup fallback para qualquer imagem que não carregar
+        document.querySelectorAll('img[src*="logo"], img[src*="simbolo"]').forEach(img => {
+            img.onerror = function() {
+                if (this.src.includes('min')) {
+                    this.src = 'logo-branco-min.png';
+                } else {
+                    this.src = 'logo-branco.png';
+                }
             };
         });
     });
