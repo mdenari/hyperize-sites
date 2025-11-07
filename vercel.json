@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/apresentacao.html",
+      "destination": "/hyperize-apresentacao-comercial.html",
       "has": [
         {
           "type": "host",
@@ -12,7 +12,7 @@
     },
     {
       "source": "/",
-      "destination": "/business-plan.html",
+      "destination": "/hyperize-business-plan.html",
       "has": [
         {
           "type": "host",
