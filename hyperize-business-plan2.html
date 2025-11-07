@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperize - Business Plan 6 Meses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+@font-face {
+  font-family: "Neue Machina Regular";
+  src: url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.eot");
+  src: url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.eot?#iefix")format("embedded-opentype"),
+       url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.woff2")format("woff2"),
+       url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.woff")format("woff"),
+       url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.ttf")format("truetype"),
+       url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.svg#Neue Machina Regular")format("svg");
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+            background: #03001E;
+            color: #F4F4F4;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(115, 3, 192, 0.03) 0%, rgba(3, 0, 30, 0.05) 100%);
+            opacity: 1;
+            z-index: 0;
+        }
+
+        .content {
+            max-width: 1200px;
+            width: 100%;
+            z-index: 1;
+            position: relative;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            height: 40px;
+            width: auto;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 60px;
+            font-size: 14px;
+            color: #7303C0;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #7303C0 0%, rgba(115, 3, 192, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #F4F4F4;
+            border-left: 6px solid #7303C0;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 30px 0 20px 0;
+            color: #ED572A;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #F4F4F4;
+            margin-bottom: 50px;
+            opacity: 0.85;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: rgba(115, 3, 192, 0.06);
+            border: 2px solid rgba(115, 3, 192, 0.4);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: #7303C0;
+            box-shadow: 0 10px 30px rgba(115, 3, 192, 0.2);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ED572A;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #F4F4F4;
+            opacity: 0.8;
+        }
+
+        .strategy-box {
+            background: rgba(115, 3, 192, 0.04);
+            border-left: 6px solid rgba(115, 3, 192, 0.6);
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 12px;
+        }
+
+        .strategy-box.optimizer {
+            border-left-color: rgba(115, 3, 192, 0.7);
+        }
+
+        .strategy-box.multiplier {
+            border-left-color: #7303C0;
+        }
+
+        .strategy-box.native {
+            border-left-color: #7303C0;
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .bullet-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .bullet-list li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .bullet-list li::before {
+            content: '▸';
+            color: #ED572A;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 18px;
+        }
+
+        th {
+            background: #7303C0;
+            color: #F4F4F4;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(115, 3, 192, 0.3);
+        }
+
+        tr:hover {
+            background: rgba(237, 87, 42, 0.1);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #7303C0;
+            color: #F4F4F4;
+        }
+
+        .status-poc {
+            background: rgba(115, 3, 192, 0.2);
+            border: 2px solid #7303C0;
+            color: #F4F4F4;
+        }
+
+        .status-interest {
+            background: rgba(115, 3, 192, 0.15);
+            border: 2px solid rgba(115, 3, 192, 0.6);
+            color: #F4F4F4;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #7303C0 0%, rgba(3, 0, 30, 0.9) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #F4F4F4;
+            flex-shrink: 0;
+            margin-right: 30px;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(115, 3, 192, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #7303C0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(115, 3, 192, 0.9) 0%, rgba(3, 0, 30, 0.95) 100%);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-box h3 {
+            color: #F4F4F4;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #ED572A;
+            font-weight: 700;
+        }
+
+        .frente-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .frente-otimizador {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #FFC107;
+            color: #F4F4F4;
+        }
+
+        .frente-multiplicador {
+            background: rgba(255, 87, 34, 0.2);
+            border: 2px solid #FF5722;
+            color: #F4F4F4;
+        }
+
+        .frente-native {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4CAF50;
+            color: #F4F4F4;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        @media print {
+            .slide {
+                page-break-after: always;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #7303C0 0%, rgba(115, 3, 192, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .key-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ED572A;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: CAPA -->
+<div class="slide" style="font-family: 'Neue Machina Regular', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(135deg, #03001E 0%, #1a0b3d 50%, #03001E 100%); overflow: hidden;">
+    <!-- Logo pequeno no canto -->
+    <img src="simbolo branco.png" class="logo" alt="Hyperize" style="opacity: 1; z-index: 100;">
+
+    <!-- Elementos decorativos tech -->
+    <div style="position: absolute; top: 10%; right: 5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(115, 3, 192, 0.15) 0%, transparent 70%); border-radius: 50%; filter: blur(60px); z-index: 0;"></div>
+    <div style="position: absolute; bottom: 10%; left: 5%; width: 350px; height: 350px; background: radial-gradient(circle, rgba(237, 87, 42, 0.1) 0%, transparent 70%); border-radius: 50%; filter: blur(50px); z-index: 0;"></div>
+    
+    <!-- Grid pattern decorativo -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: 
+        linear-gradient(rgba(115, 3, 192, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(115, 3, 192, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px; opacity: 0.3; z-index: 0;"></div>
+    
+    <div class="content" style="text-align: center; position: relative; z-index: 10;">
+        <!-- Logo grande centralizado -->
+        <div style="margin-bottom: 50px; animation: fadeInDown 1s ease-out;">
+            <img src="logo branco.png" alt="Hyperize" style="max-width: 600px; width: 85%; filter: drop-shadow(0 10px 30px rgba(115, 3, 192, 0.4));">
+        </div>
+        
+        <!-- Linha decorativa -->
+        <div style="width: 150px; height: 3px; background: linear-gradient(90deg, transparent, #ED572A, transparent); margin: 30px auto;"></div>
+        
+        <!-- Título principal -->
+        <div style="font-size: 28px; font-weight: 300; letter-spacing: 4px; color: #F4F4F4; margin-bottom: 20px; text-transform: uppercase;">
+            Business Plan 6 Meses
+        </div>
+        
+        <!-- Subtítulo com destaque -->
+        <div style="font-size: 32px; font-weight: 600; color: #F4F4F4; margin: 30px 0; line-height: 1.4;">
+            <span style="background: linear-gradient(135deg, #7303C0, #ED572A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">IA</span> e <span style="background: linear-gradient(135deg, #7303C0, #ED572A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Hiperautomação</span> para Empresas
+        </div>
+        
+        <!-- Badges de destaque -->
+        <div style="display: flex; justify-content: center; gap: 30px; margin: 50px 0;">
+            <div style="background: rgba(115, 3, 192, 0.15); border: 2px solid rgba(115, 3, 192, 0.4); border-radius: 30px; padding: 12px 30px; backdrop-filter: blur(10px);">
+                <span style="color: #ED572A; font-weight: 700; font-size: 24px;">66%</span>
+                <span style="color: #F4F4F4; font-size: 14px; margin-left: 8px;">Ganho de Eficiência</span>
+            </div>
+            <div style="background: rgba(237, 87, 42, 0.15); border: 2px solid rgba(237, 87, 42, 0.4); border-radius: 30px; padding: 12px 30px; backdrop-filter: blur(10px);">
+                <span style="color: #ED572A; font-weight: 700; font-size: 24px;">99.9%</span>
+                <span style="color: #F4F4F4; font-size: 14px; margin-left: 8px;">SLA</span>
+            </div>
+        </div>
+        
+        <!-- Indicador de progresso -->
+        <div style="margin-top: 80px;">
+            <div style="font-size: 12px; color: rgba(244, 244, 244, 0.5); margin-bottom: 10px;">SCROLL PARA CONTINUAR ↓</div>
+        </div>
+    </div>
+    <div class="slide-number">01</div>
+</div>
+
+<style>
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+<!-- SLIDE 2: VISÃO GERAL -->
+<div class="slide" style="font-family: 'Neue Machina Regular', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2 style="font-size: 30px;">IA que se adapta ao seu negócio: Otimize processos em 92%, Multiplique resultados em 3x e mantenha governança total com IA Native</h2>
+
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">O Desafio</h3>
+            <p style="font-size: 20px; line-height: 1.8;">
+                Sua operação está <span class="highlight">limitada pela capacidade humana</span>. 
+                Processos manuais consomem tempo, geram erros e impedem crescimento exponencial.
+            </p>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">Nossa Abordagem</h3>
+            <p style="font-size: 20px; line-height: 1.8;">
+                <span class="highlight">Parceria técnica hands-on</span> que entrega resultado mensurável em 6-8 semanas. 
+                Não vendemos software - entregamos <span class="highlight">transformação operacional comprovada</span>.
+            </p>
+        </div>
+
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-value">1</div>
+                <div class="metric-label">Cliente Pagante</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">R$ 19k</div>
+                <div class="metric-label">Pipeline POCs</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">R$ 21,5k</div>
+                <div class="metric-label">MRR Potencial 30d</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">3</div>
+                <div class="metric-label">Segmentos Validados</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">02</div>
+</div>
+
+<!-- SLIDE 3: ESTRATÉGIA 3 FRENTES -->
+<div class="slide" style="font-family: 'Neue Machina Regular', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Estratégia: 3 Frentes de Valor</h2>
+        <div class="subtitle">Inteligência que aprende, decide e evolui sozinha</div>
+
+        <div class="strategy-box optimizer">
+            <h3 style="margin-top: 0; font-size: 26px;"><span style="font-size: 48px; margin-right: 10px;">⚡</span>1. OTIMIZADORES</h3>
+            <p style="font-size: 18px; margin: 15px 0;"><strong>"Faça o mesmo trabalho em 10x menos tempo"</strong></p>
+            <ul class="bullet-list" style="font-size: 29px;">
+                <li>Tradução de certidões: <span class="highlight">12 pessoas → 1 pessoa</span></li>
+                <li>Validação de holerites: <span class="highlight">4 docs/dia → 267 docs/dia</span></li>
+                <li>Geração de DARF: <span class="highlight">20h → 2h</span></li>
+            </ul>
+            <p style="font-size: 18px; margin-top: 20px;">
+                <strong>Target:</strong> Operações manuais repetitivas |
+                <strong>ROI:</strong> Imediato |
+                <strong>Ticket:</strong> R$ 2.000-4.500/mês
+            </p>
+        </div>
+
+        <div class="strategy-box multiplier">
+            <h3 style="margin-top: 0; font-size: 26px;"><span style="font-size: 48px; margin-right: 10px;">📈</span>2. MULTIPLICADORES</h3>
+            <p style="font-size: 18px; margin: 15px 0;"><strong>"Gere 3x mais resultado com o mesmo custo"</strong></p>
+            <ul class="bullet-list" style="font-size: 30px;">
+                <li>Agent SDR: <span class="highlight">3x mais reuniões qualificadas/dia</span></li>
+                <li>Desconsolidação: <span class="highlight">5 navios simultâneos vs 1</span></li>
+                <li>Retificação: <span class="highlight">50 processos/dia vs 15</span></li>
+            </ul>
+            <p style="font-size: 18px; margin-top: 20px;">
+                <strong>Target:</strong> Crescimento (vendas, produção) |
+                <strong>ROI:</strong> Aumento de receita |
+                <strong>Ticket:</strong> R$ 2.500-5.000/mês
+            </p>
+        </div>
+
+        <div class="strategy-box native">
+            <h3 style="margin-top: 0; font-size: 26px;"><span style="font-size: 48px; margin-right: 10px;">🤖</span>3. IA NATIVE</h3>
+            <p style="font-size: 18px; margin: 15px 0;"><strong>"Controle interno de IA - segurança + governança"</strong></p>
+            <ul class="bullet-list" style="font-size: 29px;">
+                <li>Funcionários usando ChatGPT sem controle</li>
+                <li>Sistema white-label interno e auditado</li>
+                <li>Dashboard de governança e compliance</li>
+            </ul>
+            <p style="font-size: 18px; margin-top: 20px;">
+                <strong>Target:</strong> Empresas 100+ funcionários |
+                <strong>ROI:</strong> Mitigação de risco |
+                <strong>Ticket:</strong> R$ 8.000-20.000/mês
+            </p>
+        </div>
+    </div>
+    <div class="slide-number">03</div>
+</div>
+
+<!-- SLIDE 4: TRAÇÃO E PIPELINE -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Tração e Pipeline</h2>
+        
+        <h3>Cliente Ativo</h3>
+        <table>
+            <tr>
+                <th>Cliente</th>
+                <th>Produto</th>
+                <th>Frente</th>
+                <th>MRR</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td><strong>Terranostra</strong></td>
+                <td>Tradução Cidadania</td>
+                <td><span class="frente-badge frente-otimizador">Otimizador</span></td>
+                <td><strong>R$ 2.500</strong></td>
+                <td><span class="status-badge status-active">Pagante</span></td>
+            </tr>
+        </table>
+
+        <h3 style="margin-top: 40px;">Pipeline Quente (POCs em Validação)</h3>
+        <table>
+            <tr>
+                <th>Cliente</th>
+                <th>Produto</th>
+                <th>Frente</th>
+                <th>MRR Potencial</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td><strong>SINCO</strong></td>
+                <td>Validação Documental</td>
+                <td><span class="frente-badge frente-otimizador">Otimizador</span></td>
+                <td>R$ 1.500</td>
+                <td><span class="status-badge status-poc">POC</span></td>
+            </tr>
+            <tr>
+                <td><strong>Geobox</strong></td>
+                <td>Tracker Mercante</td>
+                <td><span class="frente-badge frente-otimizador">Otimizador</span></td>
+                <td>R$ 2.000</td>
+                <td><span class="status-badge status-poc">POC</span></td>
+            </tr>
+            <tr>
+                <td><strong>MAERSK</strong></td>
+                <td>Consulta Recinto</td>
+                <td><span class="frente-badge frente-otimizador">Otimizador</span></td>
+                <td>R$ 2.000</td>
+                <td><span class="status-badge status-poc">POC</span></td>
+            </tr>
+            <tr>
+                <td><strong>Terranostra</strong></td>
+                <td>Retificação Docs</td>
+                <td><span class="frente-badge frente-multiplicador">Multiplicador</span></td>
+                <td>R$ 2.500</td>
+                <td><span class="status-badge status-poc">POC</span></td>
+            </tr>
+            <tr>
+                <td><strong>Terranostra</strong></td>
+                <td>Agent SDR</td>
+                <td><span class="frente-badge frente-multiplicador">Multiplicador</span></td>
+                <td>R$ 1.500</td>
+                <td><span class="status-badge status-poc">POC</span></td>
+            </tr>
+            <tr>
+                <td><strong>MAERSK</strong></td>
+                <td>Desconsolidação</td>
+                <td><span class="frente-badge frente-multiplicador">Multiplicador</span></td>
+                <td>R$ 2.500</td>
+                <td><span class="status-badge status-poc">POC</span></td>
+            </tr>
+            <tr>
+                <td><strong>Geobox</strong></td>
+                <td>Desconsolidação</td>
+                <td><span class="frente-badge frente-multiplicador">Multiplicador</span></td>
+                <td>R$ 1.500</td>
+                <td><span class="status-badge status-poc">Proposta</span></td>
+            </tr>
+            <tr>
+                <td><strong>BTP</strong></td>
+                <td>IA Native Corporativo</td>
+                <td><span class="frente-badge frente-native">IA Native</span></td>
+                <td>R$ 10.000</td>
+                <td><span class="status-badge status-interest">Interesse</span></td>
+            </tr>
+        </table>
+
+        <div class="metric-grid" style="margin-top: 40px;">
+            <div class="metric-card">
+                <div class="metric-value">R$ 23,5k</div>
+                <div class="metric-label">Total Pipeline</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">50%</div>
+                <div class="metric-label">Otimizadores</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">40%</div>
+                <div class="metric-label">Multiplicadores</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">10%</div>
+                <div class="metric-label">IA Native</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">04</div>
+</div>
+
+<!-- SLIDE 5: MERCADO -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Mercado e Oportunidade</h2>
+        
+        <div class="key-number" style="text-align: center; margin: 40px 0;">
+            TAM Brasil: <span class="gradient-text">R$ 4,5 bilhões</span>
+        </div>
+
+        <table>
+            <tr>
+                <th>Segmento</th>
+                <th>TAM</th>
+                <th>Clientes Potenciais</th>
+                <th>Ticket Médio</th>
+            </tr>
+            <tr>
+                <td>Cidadania Italiana</td>
+                <td>R$ 1,2 bi</td>
+                <td>300 agências</td>
+                <td>R$ 997/mês</td>
+            </tr>
+            <tr>
+                <td>Operações Portuárias</td>
+                <td>R$ 800 mi</td>
+                <td>50 players</td>
+                <td>R$ 2.997/mês</td>
+            </tr>
+            <tr>
+                <td>Contabilidade</td>
+                <td>R$ 1,5 bi</td>
+                <td>1.200 escritórios</td>
+                <td>R$ 797/mês</td>
+            </tr>
+            <tr>
+                <td>Jurídico/Seguros</td>
+                <td>R$ 1 bi</td>
+                <td>600 empresas</td>
+                <td>R$ 1.497/mês</td>
+            </tr>
+        </table>
+
+        <div class="cta-box" style="margin-top: 50px;">
+            <h3 style="font-size: 48px;">Meta 6 Meses</h3>
+            <div class="key-number" style="color: #F4F4F4; margin: 20px 0;">R$ 85k MRR</div>
+            <p style="font-size: 24px; color: #F4F4F4;">0,02% do TAM • 25 clientes • Validação Maersk (tier 1)</p>
+        </div>
+    </div>
+    <div class="slide-number">05</div>
+</div>
+
+<!-- SLIDE 6: PORTFÓLIO -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Portfólio de Produtos</h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-top: 40px;">
+            <div class="strategy-box optimizer">
+                <h3 style="margin-top: 0; font-size: 22px;">🟢 OTIMIZADORES</h3>
+                <ul class="bullet-list" style="font-size: 18px;">
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;">Tradução de Cidadania (92% redução)</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;">Validação Documental (66x mais rápido)</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;">Tracker Mercante/Container</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;">Consulta Recinto</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;">OCR Bill of Lading</li>
+                </ul>
+            </div>
+            <div class="strategy-box multiplier">
+                <h3 style="margin-top: 0; font-size: 22px;">🔵 MULTIPLICADORES</h3>
+                <ul class="bullet-list" style="font-size: 18px;">
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;">Desconsolidação de Carga (5x)</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;">Retificação de Documentos (3x)</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;">Agent SDR (3x reuniões)</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;">Previsão ETA/ETD</li>
+                </ul>
+            </div>
+            <div class="strategy-box native">
+                <h3 style="margin-top: 0; font-size: 22px;">🟣 IA NATIVE</h3>
+                <p style="font-size: 16px; font-weight: 600; margin: 10px 0 5px 0;">Agente de Conformidade 24/7</p>
+                <ul class="bullet-list" style="font-size: 16px;">
+                    <li style="padding: 6px 0 6px 35px; line-height: 1.3;">Aprende padrões da empresa</li>
+                    <li style="padding: 6px 0 6px 35px; line-height: 1.3;">Audita automaticamente</li>
+                    <li style="padding: 6px 0 6px 35px; line-height: 1.3;">Evolui sem intervenção humana</li>
+                </ul>
+                <p style="font-size: 16px; font-weight: 600; margin: 10px 0 5px 0;">Sistema Preditivo de Operações</p>
+                <ul class="bullet-list" style="font-size: 16px;">
+                    <li style="padding: 6px 0 6px 35px; line-height: 1.3;">Antecipa problemas antes de acontecerem</li>
+                    <li style="padding: 6px 0 6px 35px; line-height: 1.3;">Recomenda ações autonomamente</li>
+                    <li style="padding: 6px 0 6px 35px; line-height: 1.3;">Melhora continuamente</li>
+                </ul>
+                <p style="font-size: 16px; font-weight: 600; margin: 10px 0 5px 0;">Co-Pilot Executivo</p>
+                <ul class="bullet-list" style="font-size: 16px;">
+                    <li style="padding: 6px 0 6px 35px; line-height: 1.3;">Gera insights estratégicos</li>
+                    <li style="padding: 6px 0 6px 35px; line-height: 1.3;">Analisa dados em tempo real</li>
+                    <li style="padding: 6px 0 6px 35px; line-height: 1.3;">Decisões baseadas em aprendizado contínuo</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">06</div>
+</div>
+
+<!-- SLIDE 7: EXECUÇÃO 6 MESES -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Plano de Execução 6 Meses</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">M1-2</div>
+                <div class="timeline-content">
+                    <h3 style="margin-top: 0;">Conversão Pipeline + Validação 3 Frentes</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>Converter 50% POCs Otimizadoras (+R$ 5k)</li>
+                        <li>Converter 1 Multiplicador (+R$ 2k)</li>
+                        <li>Case study Terranostra (2 frentes)</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-size: 20px;">
+                        <strong>Resultado:</strong> <span class="highlight">R$ 24k MRR | 4-5 clientes</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">M3-4</div>
+                <div class="timeline-content">
+                    <h3 style="margin-top: 0;">Especialização e Vendas</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>Playbook de vendas por frente</li>
+                        <li>Contratar SDR treinado nas 3 frentes</li>
+                        <li>Outbound: 15 POCs/mês (5 por frente)</li>
+                        <li>Fechar parceria BTP (IA Native)</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-size: 20px;">
+                        <strong>Resultado:</strong> <span class="highlight">R$ 45k MRR | 10 clientes | 2 pessoas</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">M5-6</div>
+                <div class="timeline-content">
+                    <h3 style="margin-top: 0;">Produto e Escala</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>Contratar Dev Pleno para white-label</li>
+                        <li>Lançar tier "IA Native Enterprise" (R$ 5-15k/mês)</li>
+                        <li>3 clientes IA Native ativos</li>
+                        <li>Sistema self-service para Otimizadores</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-size: 20px;">
+                        <strong>Resultado:</strong> <span class="highlight">R$ 85k MRR | 25 clientes | 3 pessoas</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">07</div>
+</div>
+
+<!-- SLIDE 8: MODELO DE NEGÓCIO -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Modelo de Negócio</h2>
+        
+        <h3>Precificação Estratégica por Frente</h3>
+        <table>
+            <tr>
+                <th>Frente</th>
+                <th>Preço Base</th>
+                <th>Target</th>
+                <th>Argumento</th>
+            </tr>
+            <tr>
+                <td><span class="frente-badge frente-otimizador">Otimizador</span></td>
+                <td><strong>R$ 2.500-5.000</strong></td>
+                <td>Operações repetitivas</td>
+                <td>"Economize 80% do tempo"</td>
+            </tr>
+            <tr>
+                <td><span class="frente-badge frente-multiplicador">Multiplicador</span></td>
+                <td><strong>R$ 2.500-5.000</strong></td>
+                <td>Crescimento/vendas</td>
+                <td>"3x mais resultado, mesmo custo"</td>
+            </tr>
+            <tr>
+                <td><span class="frente-badge frente-native">IA Native</span></td>
+                <td><strong>R$ 5.000-15.000</strong></td>
+                <td>Empresas 100+ func.</td>
+                <td>"Governança + segurança IA"</td>
+            </tr>
+        </table>
+
+        <div class="strategy-box" style="margin-top: 50px;">
+            <h3 style="margin-top: 0;">Estratégia Land & Expand (Modelo Terranostra)</h3>
+            <div style="display: flex; align-items: center; justify-content: space-around; margin: 30px 0;">
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 10px;">1️⃣</div>
+                    <div style="font-size: 20px;">Entrar com<br><strong>Otimizador</strong></div>
+                    <div style="font-size: 16px; opacity: 0.7; margin-top: 5px;">Baixa fricção, ROI rápido</div>
+                </div>
+                <div style="font-size: 48px; color: #ED572A;">→</div>
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 10px;">2️⃣</div>
+                    <div style="font-size: 20px;">Upsell para<br><strong>Multiplicador</strong></div>
+                    <div style="font-size: 16px; opacity: 0.7; margin-top: 5px;">Crescimento comprovado</div>
+                </div>
+                <div style="font-size: 48px; color: #ED572A;">→</div>
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 10px;">3️⃣</div>
+                    <div style="font-size: 20px;">Expandir para<br><strong>IA Native</strong></div>
+                    <div style="font-size: 16px; opacity: 0.7; margin-top: 5px;">Controle total da operação</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <div class="key-number" style="font-size: 48px;">R$ 2,5k → R$ 9k+</div>
+                <div style="font-size: 20px;">Ticket médio por cliente ao longo do tempo</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">08</div>
+</div>
+
+<!-- SLIDE 9: PROJEÇÃO FINANCEIRA -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Projeção Financeira Conservadora</h2>
+        
+        <table>
+            <tr>
+                <th>Métrica</th>
+                <th>Hoje</th>
+                <th>Mês 2</th>
+                <th>Mês 4</th>
+                <th>Mês 6</th>
+            </tr>
+            <tr>
+                <td><strong>MRR</strong></td>
+                <td>R$ 2,5k</td>
+                <td style="color: #ED572A; font-weight: 700;">R$ 27k</td>
+                <td style="color: #ED572A; font-weight: 700;">R$ 45k</td>
+                <td style="color: #ED572A; font-weight: 700;">R$ 85k</td>
+            </tr>
+            <tr>
+                <td><strong>Clientes</strong></td>
+                <td>1</td>
+                <td>5</td>
+                <td>10</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td><strong>Pipeline</strong></td>
+                <td>R$ 19k</td>
+                <td>R$ 25k</td>
+                <td>R$ 40k</td>
+                <td>R$ 60k</td>
+            </tr>
+        </table>
+
+        <h3 style="margin-top: 50px;">Distribuição por Frente (M6)</h3>
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-value">45%</div>
+                <div class="metric-label">Otimizadores<br>(entrada rápida)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">35%</div>
+                <div class="metric-label">Multiplicadores<br>(ticket médio)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">20%</div>
+                <div class="metric-label">IA Native<br>(ticket premium)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">R$ 3,4k</div>
+                <div class="metric-label">Ticket Médio</div>
+            </div>
+        </div>
+
+        <div class="strategy-box" style="margin-top: 40px;">
+            <h3 style="margin-top: 0;">Premissas</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li><strong>Otimizadores:</strong> entrada rápida, ticket menor, volume alto</li>
+                <li><strong>Multiplicadores:</strong> conversão média, ticket médio/alto</li>
+                <li><strong>IA Native:</strong> conversão lenta, ticket premium, contratos anuais</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">09</div>
+</div>
+
+<!-- SLIDE 10: PRÓXIMOS 30 DIAS -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Próximos 30 Dias</h2>
+        <div class="subtitle">Prioridade Máxima - Conversão Imediata</div>
+
+        <div class="two-column">
+            <div>
+                <h3>Semana 1-2: Conversão</h3>
+                <div class="strategy-box optimizer">
+                    <h3 style="margin-top: 0;">✅ Otimizadores</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>SINCO Validação Documental<br><strong>+R$ 1,5k</strong></li>
+                        <li>Geobox Tracker<br><strong>+R$ 2k</strong></li>
+                    </ul>
+                </div>
+
+                <div class="strategy-box native" style="margin-top: 20px;">
+                    <h3 style="margin-top: 0;">✅ IA Native</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>Terranostra IA WhatsApp<br><strong>+R$ 3k</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h3>Semana 3-4: Validação</h3>
+                <div class="strategy-box multiplier">
+                    <h3 style="margin-top: 0;">✅ Multiplicador</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>Geobox Desconsolidação<br>(proposta → contrato)</li>
+                    </ul>
+                </div>
+
+                <div class="strategy-box" style="margin-top: 20px;">
+                    <h3 style="margin-top: 0;">✅ Case Study</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>Documentar Terranostra:<br>3 frentes, R$ 9k MRR</li>
+                        <li>Usar como proof para BTP<br>e novos prospects</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box" style="margin-top: 50px;">
+            <h3 style="font-size: 48px; color: #F4F4F4;">Meta 30 Dias</h3>
+            <div style="font-size: 56px; color: #F4F4F4; margin: 20px 0;">
+                R$ 2,5k → <span style="color: #ED572A;">R$ 9k MRR</span>
+            </div>
+            <p style="font-size: 28px; color: #F4F4F4;">+260% de crescimento</p>
+        </div>
+    </div>
+    <div class="slide-number">10</div>
+</div>
+
+<!-- SLIDE 11: PROJEÇÃO DE CRESCIMENTO -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Projeção de Crescimento</h2>
+        <div class="subtitle">Execução Solo Founder → Escala com Receita</div>
+        
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">Estratégia Bootstrap</h3>
+            <p style="font-size: 22px; line-height: 1.8;">
+                Crescimento <span class="highlight">100% orgânico</span> liderado por Mauricio Denari. 
+                Contratações financiadas pela própria receita a partir de M3-M4.
+            </p>
+        </div>
+
+        <h3 style="margin-top: 50px;">Plano de Contratações com Receita</h3>
+        
+        <div class="two-column">
+            <div>
+                <div class="strategy-box">
+                    <h3 style="margin-top: 0;">M1-M2: Solo Founder</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>Converter 50% POCs Otimizadoras (+R$ 5k)</li>
+                        <li>Converter 1 Multiplicador (+R$ 2k)</li>
+                        <li>Validar 3 frentes com clientes</li>
+                        <li>Documentar processos</li>
+                        <li><strong>Meta:</strong> R$ 27k MRR</li>
+                    </ul>
+                </div>
+
+                <div class="strategy-box" style="margin-top: 20px;">
+                    <h3 style="margin-top: 0;">M3-M4: Produtos Consolidados</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>SDR/CS com MRR atingido (R$ 8k/mês)</li>
+                        <li>Liberar Denari para produto</li>
+                        <li>Escalar outbound estruturado</li>
+                        <li><strong>Meta:</strong> R$ 45k MRR</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <div class="strategy-box">
+                    <h3 style="margin-top: 0;">M5-M6: 2ª Contratação</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>Dev Pleno para IA Native (R$ 15k/mês)</li>
+                        <li>Plataforma white-label</li>
+                        <li>Tier Premium Enterprise</li>
+                        <li><strong>Meta:</strong> R$ 85k MRR</li>
+                    </ul>
+                </div>
+
+                <div class="strategy-box" style="margin-top: 20px;">
+                    <h3 style="margin-top: 0;">Modelo Sustentável</h3>
+                    <p style="font-size: 18px; line-height: 1.6;">
+                        Cada contratação só acontece quando a <span class="highlight">receita sustenta</span> o custo. 
+                        Crescimento controlado e lucrativo desde o início.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="metric-grid" style="margin-top: 50px;">
+            <div class="metric-card">
+                <div class="metric-value">R$ 85k</div>
+                <div class="metric-label">MRR em 6 meses</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">R$ 1M+</div>
+                <div class="metric-label">ARR em 6 meses</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">R$ 250k</div>
+                <div class="metric-label">MRR em 12 meses</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">3</div>
+                <div class="metric-label">Pessoas no time</div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">11</div>
+</div>
+
+<!-- SLIDE 12: POR QUE A HYPERIZE VAI VENCER -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Por Que a Hyperize Vai Vencer</h2>
+        
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">✅ Estratégia Clara de 3 Frentes</h3>
+            <p style="font-size: 20px; line-height: 1.8;">
+                Não é "IA para tudo" - é <span class="highlight">valor específico e mensurável</span> 
+                em Otimizadores, Multiplicadores e IA Native.
+            </p>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">✅ Validação Real em Andamento</h3>
+            <p style="font-size: 20px; line-height: 1.8;">
+                Terranostra testando as <span class="highlight">3 frentes simultaneamente</span> 
+                - modelo land & expand sendo comprovado na prática.
+            </p>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">✅ Timing Perfeito: IA Native Explodindo</h3>
+            <p style="font-size: 20px; line-height: 1.8;">
+                Empresas perdendo controle - funcionários usando ChatGPT sem governança. 
+                <span class="highlight">Somos pioneiros</span> a estruturar solução corporativa vertical.
+            </p>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">✅ Pipeline Tier 1 em Validação</h3>
+            <p style="font-size: 20px; line-height: 1.8;">
+                <span class="highlight">Maersk + BTP</span> validam produto e mercado. 
+                Selo de qualidade global que abre portas.
+            </p>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">✅ Crescimento Bootstrap Sustentável</h3>
+            <p style="font-size: 20px; line-height: 1.8;">
+                <span class="highlight">Receita financiando crescimento</span> - sem dependência de capital externo. 
+                Founder técnico que entrega sozinho e escala com lucro.
+            </p>
+        </div>
+
+        <div class="cta-box" style="margin-top: 50px;">
+            <h3 style="font-size: 36px; color: #F4F4F4;">Vantagem Competitiva</h3>
+            <p style="font-size: 24px; color: #F4F4F4; margin-top: 20px; line-height: 1.6;">
+                Somos os primeiros a estruturar IA corporativa em <strong>3 frentes de valor mensuráveis</strong>.<br>
+                Concorrentes vendem "plataforma" - <span style="color: #ED572A; font-weight: 700;">nós vendemos resultados</span>.
+            </p>
+        </div>
+    </div>
+    <div class="slide-number">12</div>
+</div>
+
+<!-- SLIDE 13: ENCERRAMENTO -->
+<div class="slide">
+    <img src="simbolo branco.png" class="logo" alt="Hyperize">
+    <div class="content" style="text-align: center;">
+        <img src="simbolo branco.png" alt="Hyperize" style="max-width: 450px; width: 70%; margin-bottom: 40px;">
+        
+        <div class="subtitle" style="font-size: 32px; margin: 40px 0;">
+            "Não vendemos IA.<br>
+            Vendemos <span class="gradient-text">tempo economizado</span>,<br>
+            <span class="gradient-text">resultado multiplicado</span><br>
+            e <span class="gradient-text">controle garantido</span>."
+        </div>
+
+        <div style="margin-top: 80px;">
+            <h3 style="color: #F4F4F4; margin-bottom: 30px;">Mauricio Denari</h3>
+            <p style="font-size: 24px; opacity: 0.8;">CEO & Tech Lead - Hyperize</p>
+            <p style="font-size: 20px; opacity: 0.7; margin-top: 20px;">Solo Founder • Bootstrap • IA & Hiperautomação</p>
+        </div>
+
+        <div class="cta-box" style="margin-top: 80px;">
+            <div style="font-size: 48px; color: #F4F4F4; margin-bottom: 20px;">De 1 a 25 clientes em 6 meses</div>
+            <p style="font-size: 28px; color: #F4F4F4;">Crescimento orgânico • POCs → Receita Recorrente</p>
+            <p style="font-size: 24px; color: #F4F4F4; margin-top: 30px; opacity: 0.9;">
+                R$ 2,5k → R$ 85k MRR • 100% Bootstrap
+            </p>
+        </div>
+    </div>
+    <div class="slide-number">13</div>
+</div>
+
+<script>
+    // Fallback para logo
+    document.addEventListener('DOMContentLoaded', function() {
+
+
+
+
+
+
+
+
+
+        });
+    });
+
+    // Navegação com teclado
+    document.addEventListener('keydown', function(e) {
+        const slides = document.querySelectorAll('.slide');
+        const currentSlide = Math.round(window.pageYOffset / window.innerHeight);
+        
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            if (currentSlide < slides.length - 1) {
+                slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            if (currentSlide > 0) {
+                slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+
+    // Animações ao scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.metric-card, .strategy-box, .timeline-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperize - Apresentação Comercial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #03001E;
+            color: #F4F4F4;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(115, 3, 192, 0.03) 0%, rgba(3, 0, 30, 0.05) 100%);
+            opacity: 1;
+            z-index: 0;
+        }
+
+        .content {
+            max-width: 1200px;
+            width: 100%;
+            z-index: 1;
+            position: relative;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            height: 40px;
+            width: auto;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 60px;
+            font-size: 14px;
+            color: #7303C0;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #7303C0 0%, rgba(115, 3, 192, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #F4F4F4;
+            border-left: 6px solid #7303C0;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 30px 0 20px 0;
+            color: #ED572A;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #F4F4F4;
+            margin-bottom: 50px;
+            opacity: 0.85;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: rgba(115, 3, 192, 0.06);
+            border: 2px solid rgba(115, 3, 192, 0.4);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: #7303C0;
+            box-shadow: 0 10px 30px rgba(115, 3, 192, 0.2);
+        }
+
+        .metric-value {
+            font-size: 42px;
+            font-weight: 700;
+            color: #ED572A;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #F4F4F4;
+            opacity: 0.8;
+        }
+
+        .strategy-box {
+            background: rgba(115, 3, 192, 0.04);
+            border-left: 6px solid rgba(115, 3, 192, 0.6);
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 12px;
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .bullet-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .bullet-list li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .bullet-list li::before {
+            content: '▸';
+            color: #ED572A;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .tech-card {
+            background: rgba(115, 3, 192, 0.06);
+            border: 2px solid rgba(115, 3, 192, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .tech-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ED572A;
+            margin-bottom: 10px;
+        }
+
+        .tech-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .highlight {
+            color: #ED572A;
+            font-weight: 700;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(115, 3, 192, 0.9) 0%, rgba(3, 0, 30, 0.95) 100%);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .proof-card {
+            background: rgba(115, 3, 192, 0.08);
+            border-left: 6px solid #ED572A;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+        }
+
+        .key-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ED572A;
+            margin: 20px 0;
+        }
+
+        @media print {
+            .slide {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: CAPA -->
+<div class="slide">
+    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <div class="content" style="text-align: center;">
+        <img src="logo_branco_antigo.png" alt="Hyperize" style="max-width: 500px; width: 80%; margin-bottom: 40px;">
+        <div class="subtitle" style="font-size: 28px;">Hiperautomação e IA de Alto Impacto</div>
+        <div class="subtitle" style="font-size: 24px; margin-top: 40px;">
+            Transformamos processos empresariais com<br>resultados mensuráveis e entrega rápida
+        </div>
+        <div style="margin-top: 80px; font-size: 20px; opacity: 0.8;">
+            Apresentação Comercial
+        </div>
+    </div>
+    <div class="slide-number">01</div>
+</div>
+
+<!-- SLIDE 2: IMPACTO QUANTIFICÁVEL -->
+<div class="slide">
+    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Impacto Quantificável Comprovado</h2>
+        <div class="subtitle">Resultados reais em produção para empresas de médio e grande porte</div>
+
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-value">66%</div>
+                <div class="metric-label">Ganhos de Eficiência</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">40%</div>
+                <div class="metric-label">Redução Time-to-Market</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">60%</div>
+                <div class="metric-label">Menos Incidentes de Dados</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">70%</div>
+                <div class="metric-label">Redução Processamento Manual</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">99.2%</div>
+                <div class="metric-label">Precisão em Documentos</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">99.9%</div>
+                <div class="metric-label">SLA Garantido</div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h3 style="color: #F4F4F4; font-size: 28px;">Não vendemos apenas tecnologia</h3>
+            <p style="font-size: 20px; color: #F4F4F4; margin-top: 20px;">
+                Entregamos <span style="color: #ED572A;">economia de custos</span>, 
+                <span style="color: #ED572A;">velocidade de execução</span> e 
+                <span style="color: #ED572A;">resultados mensuráveis</span>
+            </p>
+        </div>
+    </div>
+    <div class="slide-number">02</div>
+</div>
+
+<!-- SLIDE 3: 3 FRENTES DE ENTREGA -->
+<div class="slide">
+    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>3 Frentes de Entrega de Valor</h2>
+        
+        <div class="strategy-box">
+            <div class="icon">⚡</div>
+            <h3 style="margin-top: 0;">1. OTIMIZADORES</h3>
+            <p style="font-size: 20px; margin: 15px 0;"><strong>"Faça em 10x menos tempo"</strong></p>
+            <ul class="bullet-list">
+                <li>Processamento de <span class="highlight">500k+ registros diários</span> automatizados</li>
+                <li>Redução de <span class="highlight">80% no tempo de processamento</span> de documentos</li>
+                <li>Orquestração de pipelines com <span class="highlight">retry automático</span></li>
+            </ul>
+        </div>
+
+        <div class="strategy-box">
+            <div class="icon">📈</div>
+            <h3 style="margin-top: 0;">2. MULTIPLICADORES</h3>
+            <p style="font-size: 20px; margin: 15px 0;"><strong>"3x mais resultado, mesmo custo"</strong></p>
+            <ul class="bullet-list">
+                <li>Sistemas multi-agentes com <span class="highlight">8+ nós de decisão</span></li>
+                <li>Processamento de <span class="highlight">100k+ transações diárias</span></li>
+                <li>Fluxos Human-in-the-Loop para <span class="highlight">validação crítica</span></li>
+            </ul>
+        </div>
+
+        <div class="strategy-box">
+            <div class="icon">🤖</div>
+            <h3 style="margin-top: 0;">3. IA NATIVE</h3>
+            <p style="font-size: 20px; margin: 15px 0;"><strong>"Inteligência que aprende, decide e evolui sozinha"</strong></p>
+            <ul class="bullet-list">
+                <li><span class="highlight">Agente de Conformidade 24/7</span> que aprende seus padrões</li>
+                <li><span class="highlight">Sistema Preditivo</span> que antecipa problemas operacionais</li>
+                <li><span class="highlight">Co-Pilot Executivo</span> que gera insights estratégicos</li>
+                <li>Aprendizado contínuo sem intervenção humana</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">03</div>
+</div>
+
+<!-- SLIDE 4: LIDERANÇA TÉCNICA -->
+<div class="slide">
+    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Liderança Técnica Hands-On</h2>
+        <div class="subtitle">CEO/CTO que arquiteta e codifica soluções complexas</div>
+
+        <div class="two-column">
+            <div>
+                <h3>Diferencial Único</h3>
+                <ul class="bullet-list">
+                    <li><span class="highlight">Não delega a execução</span> - arquiteta e implementa diretamente</li>
+                    <li>Decisões técnicas mais rápidas e assertivas</li>
+                    <li>Iteração veloz com base em feedback real</li>
+                    <li>Liderança de engenharia com credibilidade prática</li>
+                </ul>
+
+                <h3 style="margin-top: 40px;">Combinação Rara</h3>
+                <div class="strategy-box">
+                    <p style="font-size: 18px; line-height: 1.8;">
+                        <span class="highlight">Visão estratégica de negócio (BMAD)</span> combinada com 
+                        <span class="highlight">execução técnica avançada</span> em LangGraph, Windmill, Kestra e Claude Code
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h3>Provas de Execução</h3>
+                <div class="proof-card">
+                    <div class="metric-value" style="font-size: 32px;">66x</div>
+                    <p style="font-size: 16px;">Aumento de produtividade em automação de cidadania</p>
+                </div>
+                <div class="proof-card">
+                    <div class="metric-value" style="font-size: 32px;">R$ 50k/mês</div>
+                    <p style="font-size: 16px;">Economia comprovada em terminal portuário</p>
+                </div>
+                <div class="proof-card">
+                    <div class="metric-value" style="font-size: 32px;">20h → 2h</div>
+                    <p style="font-size: 16px;">Redução de tempo em escritórios contábeis</p>
+                </div>
+                <div class="proof-card">
+                    <div class="metric-value" style="font-size: 32px;">99.7%</div>
+                    <p style="font-size: 16px;">Confiabilidade em processamento de transações</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">04</div>
+</div>
+
+<!-- SLIDE 5: STACK TÉCNICO -->
+<div class="slide">
+    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Stack Técnico de Produção</h2>
+        <div class="subtitle">Tecnologias que a maioria dos concorrentes não consegue igualar</div>
+
+        <div class="tech-stack">
+            <div class="tech-card">
+                <div class="tech-name">🔄 Kestra</div>
+                <div class="tech-desc">
+                    <strong>Orquestração de Data Pipelines</strong><br>
+                    • 500k+ registros diários<br>
+                    • Processamento em tempo real<br>
+                    • Retry automático e tratamento de falhas<br>
+                    • <span class="highlight">60% menos incidentes</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-name">🤖 LangGraph</div>
+                <div class="tech-desc">
+                    <strong>Sistemas Multi-Agentes Avançados</strong><br>
+                    • Fluxos de 8+ nós de decisão<br>
+                    • 99.2% de precisão em documentos<br>
+                    • Human-in-the-Loop integrado<br>
+                    • <span class="highlight">80% menos tempo manual</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-name">⚙️ Windmill</div>
+                <div class="tech-desc">
+                    <strong>Automação Empresarial Robusta</strong><br>
+                    • 100k+ transações diárias<br>
+                    • 99.7% de confiabilidade<br>
+                    • Execuções em sub-segundos<br>
+                    • <span class="highlight">Hub self-service</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-name">💻 Claude Code</div>
+                <div class="tech-desc">
+                    <strong>Desenvolvimento Agêntico</strong><br>
+                    • Prototipagem ultra-rápida<br>
+                    • 40% mais produtividade da equipe<br>
+                    • Geração de código complexo<br>
+                    • <span class="highlight">Entrega mais rápida</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-name">📊 BMAD</div>
+                <div class="tech-desc">
+                    <strong>Frameworks Estratégicos</strong><br>
+                    • Análise de modelo de negócio<br>
+                    • Validação de product-market fit<br>
+                    • Alinhamento técnica-negócio<br>
+                    • <span class="highlight">Decisões orientadas a valor</span>
+                </div>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-name">🏗️ Infraestrutura</div>
+                <div class="tech-desc">
+                    <strong>Cloud-Native de Produção</strong><br>
+                    • Docker Swarm / Kubernetes-ready<br>
+                    • Sentry + Grafana (observabilidade)<br>
+                    • 99.9% SLA garantido<br>
+                    • <span class="highlight">Contingência automatizada</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">05</div>
+</div>
+
+<!-- SLIDE 6: CASOS DE USO -->
+<div class="slide">
+    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Casos de Uso em Produção</h2>
+
+        <div class="two-column">
+            <div>
+                <h3>Cidadania Italiana</h3>
+                <div class="strategy-box">
+                    <ul class="bullet-list" style="font-size: 16px;">
+                        <li>Tradução automatizada PT→IT</li>
+                        <li>Validação de certidões com IA</li>
+                        <li>Retificação de documentos</li>
+                        <li><span class="highlight">66x mais produtivo</span></li>
+                    </ul>
+                </div>
+
+                <h3 style="margin-top: 30px;">Operações Portuárias</h3>
+                <div class="strategy-box">
+                    <ul class="bullet-list" style="font-size: 16px;">
+                        <li>OCR Bill of Lading inteligente</li>
+                        <li>Desconsolidação automática</li>
+                        <li>Tracking de navios mercantes</li>
+                        <li><span class="highlight">R$ 50k/mês economizados</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h3>Conformidade & Auditoria</h3>
+                <div class="strategy-box">
+                    <ul class="bullet-list" style="font-size: 16px;">
+                        <li>Validação de CND/CRF/FGTS</li>
+                        <li>Auditoria de holerites</li>
+                        <li>Monitoramento de fornecedores</li>
+                        <li><span class="highlight">99.2% precisão</span></li>
+                    </ul>
+                </div>
+
+                <h3 style="margin-top: 30px;">Integração Empresarial</h3>
+                <div class="strategy-box">
+                    <ul class="bullet-list" style="font-size: 16px;">
+                        <li>Hub self-service CRM/ERP</li>
+                        <li>Pipelines de dados em tempo real</li>
+                        <li>Orquestração de microsserviços</li>
+                        <li><span class="highlight">100k+ transações/dia</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">06</div>
+</div>
+
+<!-- SLIDE 7: DIFERENCIAL COMPETITIVO -->
+<div class="slide">
+    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Por Que a Hyperize é Diferente</h2>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">🎯 Centro de Inovação de Alto Desempenho</h3>
+            <p style="font-size: 20px; line-height: 1.8; margin: 20px 0;">
+                Enquanto a maioria das empresas constrói soluções de IA usando kits pré-fabricados, 
+                a Hyperize tem:
+            </p>
+            <ul class="bullet-list">
+                <li><span class="highlight">Engenheiros de ponta</span> (LangGraph/Windmill) para soluções customizadas</li>
+                <li><span class="highlight">Máquinas de logística</span> super eficientes (Kestra) para dados em escala</li>
+                <li><span class="highlight">Prototipador 40% mais rápido</span> (Claude Code) para iteração veloz</li>
+                <li><span class="highlight">Mapa de valor de negócio</span> claro (BMAD) para ROI garantido</li>
+            </ul>
+        </div>
+
+        <div class="two-column" style="margin-top: 40px;">
+            <div class="strategy-box">
+                <h3 style="margin-top: 0;">Entrega Rápida</h3>
+                <p style="font-size: 18px; line-height: 1.8;">
+                    Reduzimos ciclos de <span class="highlight">semanas para dias</span> na 
+                    implantação de integrações e automações customizadas
+                </p>
+            </div>
+
+            <div class="strategy-box">
+                <h3 style="margin-top: 0;">Resultados Garantidos</h3>
+                <p style="font-size: 18px; line-height: 1.8;">
+                    Todos os projetos entregam <span class="highlight">métricas quantificáveis</span> 
+                    de eficiência, economia ou aumento de capacidade
+                </p>
+            </div>
+        </div>
+
+        <div class="cta-box" style="margin-top: 40px;">
+            <div class="key-number" style="color: #F4F4F4;">66% de ganho de eficiência</div>
+            <p style="font-size: 22px; color: #F4F4F4;">
+                Não é promessa. É o que entregamos consistentemente.
+            </p>
+        </div>
+    </div>
+    <div class="slide-number">07</div>
+</div>
+
+<!-- SLIDE 8: PROCESSO DE ENTREGA -->
+<div class="slide">
+    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <div class="content">
+        <h2>Como Entregamos</h2>
+        <div class="subtitle">Metodologia comprovada de discovery a produção</div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">1️⃣ Discovery & Design (1-2 semanas)</h3>
+            <ul class="bullet-list" style="font-size: 16px;">
+                <li>Análise de processos atuais e dores</li>
+                <li>Definição de KPIs e metas quantificáveis</li>
+                <li>Arquitetura técnica e stack recomendado</li>
+                <li>Validação de product-market fit (BMAD)</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">2️⃣ POC & Validação (2-3 semanas)</h3>
+            <ul class="bullet-list" style="font-size: 16px;">
+                <li>Desenvolvimento do MVP com Claude Code</li>
+                <li>Implementação de pipeline piloto (Kestra)</li>
+                <li>Testes com dados reais do cliente</li>
+                <li>Validação de ganhos de eficiência</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">3️⃣ Produção & Escala (3-4 semanas)</h3>
+            <ul class="bullet-list" style="font-size: 16px;">
+                <li>Deploy em infraestrutura Cloud-Native</li>
+                <li>Orquestração completa (LangGraph/Windmill)</li>
+                <li>Observabilidade e monitoramento (Sentry/Grafana)</li>
+                <li>Treinamento de equipe e documentação</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">4️⃣ Otimização Contínua</h3>
+            <ul class="bullet-list" style="font-size: 16px;">
+                <li>Análise de métricas e identificação de gargalos</li>
+                <li>Iterações rápidas baseadas em feedback</li>
+                <li>Expansão para novos casos de uso</li>
+                <li>Garantia de 99.9% SLA</li>
+            </ul>
+        </div>
+
+        <div class="cta-box" style="margin-top: 40px;">
+            <p style="font-size: 24px; color: #F4F4F4;">
+                <span style="color: #ED572A; font-weight: 700;">6-8 semanas</span> 
+                da discovery à produção completa
+            </p>
+        </div>
+    </div>
+    <div class="slide-number">08</div>
+</div>
+
+<!-- SLIDE 9: ENCERRAMENTO -->
+<div class="slide">
+    <img src="logo_branco_min.png" class="logo" alt="Hyperize">
+    <div class="content" style="text-align: center;">
+        <img src="logo_branco_antigo.png" alt="Hyperize" style="max-width: 450px; width: 70%; margin-bottom: 40px;">
+        
+        <div class="subtitle" style="font-size: 32px; margin: 40px 0;">
+            Hiperautomação e IA de Alto Impacto<br>
+            <span style="color: #ED572A;">com resultados mensuráveis</span>
+        </div>
+
+        <div class="metric-grid" style="max-width: 900px; margin: 60px auto;">
+            <div class="metric-card">
+                <div class="metric-value">66%</div>
+                <div class="metric-label">Ganhos de Eficiência</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">40%</div>
+                <div class="metric-label">Menos Time-to-Market</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">99.9%</div>
+                <div class="metric-label">SLA Garantido</div>
+            </div>
+        </div>
+
+        <div class="cta-box" style="margin-top: 60px;">
+            <h3 style="color: #F4F4F4; font-size: 28px;">Pronto para transformar seus processos?</h3>
+            <p style="font-size: 20px; color: #F4F4F4; margin-top: 20px;">
+                Vamos conversar sobre como entregar<br>
+                <span style="color: #ED572A; font-weight: 700;">66% de ganho de eficiência</span> 
+                na sua operação
+            </p>
+            <div style="margin-top: 40px; font-size: 18px; color: #F4F4F4; opacity: 0.9;">
+                [Contato CEO/CTO]<br>
+                [Email] | [LinkedIn]
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">09</div>
+</div>
+
+<script>
+    // Fallback para logo
+    document.addEventListener('DOMContentLoaded', function() {
+        const logos = document.querySelectorAll('img[src="logo_branco_min.png"]');
+        logos.forEach(logo => {
+            logo.onerror = function() {
+                this.src = 'logo_branco.png';
+                this.onerror = function() {
+                    this.style.display = 'none';
+                    console.error('Logo não encontrado');
+                };
+            };
+        });
+    });
+
+    // Navegação com teclado
+    document.addEventListener('keydown', function(e) {
+        const slides = document.querySelectorAll('.slide');
+        const currentSlide = Math.round(window.pageYOffset / window.innerHeight);
+        
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            if (currentSlide < slides.length - 1) {
+                slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            if (currentSlide > 0) {
+                slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+
+    // Animações ao scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.metric-card, .strategy-box, .tech-card, .proof-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
