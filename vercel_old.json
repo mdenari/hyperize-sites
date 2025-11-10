@@ -1,11 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/hyperize-apresentacao-comercial.html",
-      "destination": "/404.html",
-      "statusCode": 404
-    }
-  ],
   "rewrites": [
     {
       "source": "/",
