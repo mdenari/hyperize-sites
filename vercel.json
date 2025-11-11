@@ -16,6 +16,16 @@
           "value": "business.hyperize.com.br"
         }
       ]
+    },
+    {
+      "source": "/",
+      "destination": "/apresentacao_comercial_btp.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "esg.hyperize.com.br"
+        }
+      ]
     }
   ]
 }
