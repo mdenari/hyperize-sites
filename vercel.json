@@ -1,31 +1,38 @@
 {
-  "redirects": [
-    {
-      "source": "/hyperize-apresentacao-comercial.html",
-      "destination": "/404.html",
-      "statusCode": 404
-    }
-  ],
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/hyperize-business-plan.html",
+      "source": "/apresentacoes/:path*",
       "has": [
         {
           "type": "host",
-          "value": "business.hyperize.com.br"
+          "value": "docs.hyperize.com.br"
         }
-      ]
+      ],
+      "destination": "/public/apresentacoes/:path*"
     },
     {
       "source": "/",
-      "destination": "/apresentacao_comercial_btp.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.hyperize.com.br"
+        }
+      ],
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/",
       "has": [
         {
           "type": "host",
           "value": "show.hyperize.com.br"
         }
-      ]
+      ],
+      "destination": "/apresentacao_comercial_btp.html"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/:path*"
     }
   ]
 }
