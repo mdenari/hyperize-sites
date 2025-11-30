@@ -1,345 +1,71 @@
-# 📦 ProjectTemplate - Template Base para Projetos
+# ELabs Publish Tool 🚀
 
-**Template base para todos os projetos ELabs-Agile**
+Ferramenta CLI para automação de publicação de apresentações estáticas no portal Expert Labs (Vercel).
 
-Este é o template master que será copiado para criar novos projetos. Contém estrutura padrão, agents genéricos, scripts de inicialização e orientações.
+## 📋 Como Usar
 
----
-
-## 📁 Estrutura do Template
-
-```
-ProjectTemplate/
-├── agents/                     # Agents customizáveis
-│   ├── CHALLENGER.md           # Meta-agente crítico
-│   ├── config.md               # Configuração do projeto (CUSTOMIZE!)
-│   └── (outros agents...)      # Copie do PersonalAgents conforme necessário
-│
-├── docs/                       # Documentação do projeto
-│   ├── COMO-INICIAR.md         # Guia para novo projeto
-│   ├── COMO-RETOMAR.md         # Guia para projeto em andamento
-│   └── ORIENTACOES-AGENT-CLI.md # O que falar para os agents
-│
-├── scripts/                    # Scripts de automação
-│   ├── setup.sh                # Setup inicial
-│   └── (outros scripts...)
-│
-├── .docker/                    # Docker configurations
-│   ├── docker-compose.yml      # Services definition
-│   └── .env.example            # Environment template
-│
-├── src/                        # Código-fonte (quando aplicável)
-├── workflows/                  # n8n workflows (exports)
-├── tests/                      # Testes automatizados
-├── config/                     # Configurações
-├── data/                       # Dados locais (gitignored)
-│
-├── README.md                   # Este arquivo
-├── .gitignore                  # Git ignore
-├── start-gemini.bat            # Iniciar CLI Gemini
-└── start-claude.bat            # Iniciar CLI Claude
-```
-
----
-
-## 🚀 Como Usar Este Template
-
-### **Opção 1: Script Automatizado (Recomendado)**
+Para publicar uma nova apresentação, abra o terminal nesta pasta (`Sites`) e execute:
 
 ```bash
-# Na pasta ELabs-Agile/scripts/
-.\ELabs-init.bat NomeDoProjeto TipoProjeto
-
-# Exemplo:
-.\ELabs-init.bat MeuAppIA Projetos_Pessoais
+python publish.py --name "Nome da Apresentação" --source "C:\Caminho\Para\Pasta\Original" --slug "nome-curto-url" [OPÇÕES]
 ```
 
-Isso cria automaticamente:
-- Cópia completa do ProjectTemplate
-- Estrutura em `Projetos/TipoProjeto/NomeDoProjeto/`
-- Scripts funcionais (start-gemini.bat, start-claude.bat)
+### Argumentos:
+*   `--name`: Título que aparecerá no menu principal do portal.
+*   `--source`: Caminho completo da pasta onde está o `index.html` da apresentação. Esta pasta deve ser **autocontida** (todos os assets como imagens, CSS, JS devem estar nela ou em subpastas relativas).
+*   `--slug`: (Opcional) Nome usado na URL (ex: `kickoff-dez`). Se não informado, será gerado a partir do nome.
+*   `--protected`: (Opcional) Se presente, a apresentação exigirá senha para acesso.
 
-### **Opção 2: Cópia Manual**
+### Exemplos:
 
-1. Copie toda pasta `ProjectTemplate/`
-2. Cole em `Projetos/[tipo]/[nome-projeto]/`
-3. Renomeie pasta para nome do projeto
-4. Customize `agents/config.md`
-5. Execute setup
-
----
-
-## ✏️ Customização do Projeto
-
-### **1. Configure agents/config.md**
-
-**OBRIGATÓRIO!** Edite `agents/config.md` com:
-- Informações pessoais/empresa
-- Objetivos do projeto
-- Preferências de trabalho
-- Budget e metas
-- Integrações (APIs, tools)
-
-### **2. Adicione Agents Especializados**
-
-Copie agents do `PersonalAgents` ou crie novos:
+**1. Publicar apresentação pública:**
 ```bash
-# Exemplo: adicionar coaching agent
-copy ..\..\PersonalAgents\agents\coaching.md agents\
+python publish.py --name "Relatório Comex" --source "C:\Users\mauri\mycode\Projetos\RelatorioComex"
 ```
 
-Agents disponíveis:
-- `coaching.md` - Motivação diária
-- `terapia.md` - TCC mensal
-- `relacionamentos.md` - Família
-- `financas.md` - Gestão financeira
-- `empresa.md` - Projetos e negócios
-- `orquestrador.md` - Maestro central
-
-### **3. Ajuste Docker (se necessário)**
-
-Edite `.docker/docker-compose.yml` conforme stack do projeto.
-
-### **4. Configure Git**
-
+**2. Publicar apresentação protegida por senha:**
 ```bash
-git init
-git add .
-git commit -m "Initial commit from ProjectTemplate"
+python publish.py --name "Kickoff Dezembro" --source "C:\Users\mauri\mycode\Projetos\ExecutiveMeeting" --slug "kickoff-dez" --protected
 ```
 
 ---
 
-## 🤖 Iniciar Agents CLI
+## 🔐 Segurança (Senha Mestra)
 
-### **Gemini (padrão - econômico)**
+Este portal utiliza uma **Senha Mestra Única** para proteger conteúdos sensíveis. Essa senha é a "Senha da Diretoria" ou "Expert Labs Confidencial".
 
-```bash
-.\start-gemini.bat
+1.  **Como definir a Senha Mestra (no Vercel):**
+    *   Vá para o painel da Vercel (`https://vercel.com/dashboard`).
+    *   Selecione o projeto correspondente ao repositório `Sites`.
+    *   Vá em **Settings > Environment Variables**.
+    *   Crie uma variável chamada `SITE_PASSWORD` e defina a senha (ex: `ExpertLabs2026!`).
+    *   Esta senha será a única a ser gerenciada para todas as apresentações protegidas.
+
+2.  **Como proteger uma apresentação:**
+    *   Ao usar o `publish.py`, inclua a flag `--protected` no comando.
+    *   O script registrará no `presentations.json` que essa apresentação é protegida.
+    *   O Vercel Edge Middleware detectará isso e exigirá a `SITE_PASSWORD` para acesso.
+
+---
+
+## 📂 Estrutura do Projeto (dentro da pasta `Sites`)
+
+```text
+Sites/
+├── public/
+│   ├── index.html        # Menu Principal do Portal (Gerado Automaticamente pelo publish.py)
+│   ├── assets/           # (Opcional: Assets globais do portal, ex: logo da Expert Labs)
+│   └── apresentacoes/    # Subpastas com as apresentações publicadas
+│       └── {slug_da_apresentacao}/
+│           └── index.html # A apresentação HTML copiada
+│           └── ... (outros assets da apresentação)
+├── publish.py            # O Script de Automação do ELabs Publish Tool
+├── presentations.json    # Banco de Dados de Metadados das apresentações
+├── middleware.js         # Lógica de Segurança para Vercel Edge Functions
+└── README.md             # Este arquivo
 ```
 
-O agent lerá:
-1. `agents/config.md` - Configuração do projeto
-2. `docs/COMO-INICIAR.md` ou `docs/COMO-RETOMAR.md` - Contexto
-3. Outros `agents/*.md` conforme necessário
+## 🛠️ Manutenção
 
-### **Claude (premium - ocasional)**
-
-```bash
-.\start-claude.bat
-```
-
-Use para tasks que precisam de maior empatia/profundidade (ex: terapia, análise complexa).
-
----
-
-## 📚 Arquivos de Orientação
-
-### **docs/COMO-INICIAR.md**
-Leia se é a **primeira vez** trabalhando no projeto.
-
-Contém:
-- O que é o projeto
-- Objetivos principais
-- Próximos passos iniciais
-- O que dizer ao agent na primeira sessão
-
-### **docs/COMO-RETOMAR.md**
-Leia se projeto **já existe** e você está retomando.
-
-Contém:
-- Status atual do projeto
-- Última sessão de trabalho
-- Tarefas pendentes
-- O que dizer ao agent para retomar
-
-### **docs/ORIENTACOES-AGENT-CLI.md**
-Guia completo de como interagir com agents CLI.
-
-Contém:
-- Comandos úteis
-- Boas práticas
-- Exemplos de prompts
-- Troubleshooting
-
----
-
-## 🔄 Sincronização com Master
-
-Quando o template master (`ELabs-Agile/ProjectTemplate/`) for atualizado:
-
-```bash
-# Na pasta ELabs-Agile/scripts/
-.\ELabs-sync.bat NomeDoProjeto
-
-# Exemplo:
-.\ELabs-sync.bat MeuAppIA
-```
-
-Isso faz merge seletivo de:
-- Novos agents
-- Novos workflows
-- Scripts atualizados
-- Documentação nova
-
-**Importante:** Suas customizações em `config.md` são preservadas!
-
----
-
-## 🎯 Metodologia ELabs-Agile
-
-Este template segue a metodologia completa:
-- **BMM Module** (`../../bmm/`) - 12 agents, 34 workflows
-- **BMB Module** (`../../bmb/`) - Builder tools
-- **Core Module** (`../../core/`) - Orchestration
-
-**Workflows disponíveis:**
-- Phase 1: Analysis (brainstorm, research, brief)
-- Phase 2: Planning (PRD, tech spec, UX design)
-- Phase 3: Solutioning (architecture, gate check)
-- Phase 4: Implementation (stories, sprints, code review)
-- Testing: QA workflows
-
-**Veja:** `../../bmm/docs/` para guias completos
-
----
-
-## 🔐 Segurança e Privacy
-
-### **O que vai no .gitignore**
-
-```
-.env
-.env.local
-config/secrets.yaml
-agents/private/
-data/journals/
-data/relacionamentos/
-data/logs/*.log
-data/backups/*.sql
-```
-
-### **Dados sensíveis**
-
-Se projeto tem dados pessoais (journals, finanças, relacionamentos):
-- Use encryption (AES-256)
-- RLS no Supabase
-- Backups encriptados
-
----
-
-## 🛠️ Stack Técnico Sugerido
-
-**Orquestração:**
-- Python 3.11+ (orchestrator)
-- n8n (workflows visuais)
-- Docker Swarm (deploy)
-
-**IA:**
-- Gemini 1.5 Flash (default - barato)
-- Claude 3.5 Sonnet (premium - ocasional)
-- Ollama (local - futuro)
-
-**Database:**
-- Supabase Cloud (PostgreSQL + pgvector)
-- RLS habilitado
-
-**Integrações:**
-- Google (Calendar, Gmail)
-- ClickUp, WhatsApp, etc
-
----
-
-## 📊 Métricas de Sucesso
-
-**Para todo projeto ELabs-Agile, defina:**
-
-- 🎯 Objetivos principais (3-5)
-- 📈 KPIs mensuráveis
-- ⏱️ Timeline realista
-- 💰 Budget de custo (APIs, infra)
-- ✅ Critérios de sucesso
-- 🔄 Critérios de pivô
-
-**Documente em `agents/config.md`!**
-
----
-
-## 🚨 Troubleshooting
-
-### **Agent não entende contexto**
-
-1. Verifique se `agents/config.md` está configurado
-2. Leia `docs/ORIENTACOES-AGENT-CLI.md`
-3. Use prompts mais específicos
-4. Consulte `../../bmm/docs/troubleshooting.md`
-
-### **Scripts .bat não funcionam**
-
-1. Verifique paths relativos
-2. Execute como administrador se necessário
-3. Veja logs em `data/logs/`
-
-### **Docker não sobe**
-
-1. Verifique `.docker/.env`
-2. Teste: `docker-compose config`
-3. Veja: `../../bmm/docs/troubleshooting.md`
-
----
-
-## 📝 Checklist de Setup
-
-Antes de começar desenvolvimento:
-
-- [ ] Copiei template para `Projetos/[tipo]/[nome]/`
-- [ ] Editei `agents/config.md` com info do projeto
-- [ ] Li `docs/COMO-INICIAR.md`
-- [ ] Testei `start-gemini.bat`
-- [ ] Configurei `.docker/.env` (se aplicável)
-- [ ] Inicializei Git
-- [ ] Criei primeiro commit
-
----
-
-## 🎓 Próximos Passos
-
-1. **Leia:** `docs/COMO-INICIAR.md`
-2. **Configure:** `agents/config.md`
-3. **Inicie:** `start-gemini.bat`
-4. **Diga ao agent:** "Leia agents/config.md e docs/COMO-INICIAR.md. Estou começando este projeto. Me ajude a planejar os próximos passos."
-
----
-
-## 🤝 Contribuindo para o Template
-
-Se desenvolveu algo útil que deve estar no template master:
-
-1. Documente bem
-2. Teste em projeto real
-3. Adicione em `ELabs-Agile/ProjectTemplate/`
-4. Atualize este README
-5. Sincronize projetos existentes com `ELabs-sync.bat`
-
----
-
-## 📞 Suporte
-
-**Documentação:**
-- `../../bmm/docs/` - Guias completos
-- `docs/` - Orientações deste projeto
-
-**Comunidade:**
-- Discord BMad: https://discord.gg/gk8jAdXWmj
-- GitHub: (adicionar quando disponível)
-
----
-
-**Última Atualização:** 2025-11-12
-**Versão Template:** 1.0.0
-**Status:** Pronto para uso
-
----
-
-**ProjectTemplate** - Template base para projetos ELabs-Agile
-*Copy, Customize, Create* 🏗️✨
+*   **Para remover uma apresentação:** Edite o `presentations.json` manualmente e apague a pasta correspondente em `public/apresentacoes/`. Rode o `publish.py` sem argumentos (futuro `--rebuild`) para regenerar o menu.
+*   **Para atualizar uma apresentação:** Basta rodar o comando de publicação novamente com o mesmo `--slug`. O script substituirá os arquivos da apresentação.
