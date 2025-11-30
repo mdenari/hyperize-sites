@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperize - Módulo ESG para Gestão de Fornecedores</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+@font-face {
+  font-family: "Neue Machina Regular";
+  src: url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.eot");
+  src: url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.eot?#iefix")format("embedded-opentype"),
+       url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.woff2")format("woff2"),
+       url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.woff")format("woff"),
+       url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.ttf")format("truetype"),
+       url("https://db.onlinewebfonts.com/t/38d41072aa88a50711d4d50dd0d50f6b.svg#Neue Machina Regular")format("svg");
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+            background: #03001E;
+            color: #F4F4F4;
+            overflow-x: hidden;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(115, 3, 192, 0.03) 0%, rgba(3, 0, 30, 0.05) 100%);
+            opacity: 1;
+            z-index: 0;
+        }
+
+        .content {
+            max-width: 1200px;
+            width: 100%;
+            z-index: 1;
+            position: relative;
+        }
+
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 60px;
+            height: 40px;
+            width: auto;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 60px;
+            font-size: 14px;
+            color: #7303C0;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #7303C0 0%, rgba(115, 3, 192, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #F4F4F4;
+            border-left: 6px solid #7303C0;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 30px 0 20px 0;
+            color: #ED572A;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #F4F4F4;
+            margin-bottom: 50px;
+            opacity: 0.85;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .metric-card {
+            background: rgba(115, 3, 192, 0.06);
+            border: 2px solid rgba(115, 3, 192, 0.4);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: #7303C0;
+            box-shadow: 0 10px 30px rgba(115, 3, 192, 0.2);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ED572A;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #F4F4F4;
+            opacity: 0.8;
+        }
+
+        .strategy-box {
+            background: rgba(115, 3, 192, 0.04);
+            border-left: 6px solid rgba(115, 3, 192, 0.6);
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 12px;
+        }
+
+        .strategy-box.optimizer {
+            border-left-color: rgba(115, 3, 192, 0.7);
+        }
+
+        .strategy-box.multiplier {
+            border-left-color: #7303C0;
+        }
+
+        .strategy-box.native {
+            border-left-color: #7303C0;
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .bullet-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .bullet-list li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .bullet-list li::before {
+            content: '▸';
+            color: #ED572A;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 18px;
+        }
+
+        th {
+            background: #7303C0;
+            color: #F4F4F4;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(115, 3, 192, 0.3);
+        }
+
+        tr:hover {
+            background: rgba(237, 87, 42, 0.1);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #7303C0;
+            color: #F4F4F4;
+        }
+
+        .status-poc {
+            background: rgba(115, 3, 192, 0.2);
+            border: 2px solid #7303C0;
+            color: #F4F4F4;
+        }
+
+        .status-interest {
+            background: rgba(115, 3, 192, 0.15);
+            border: 2px solid rgba(115, 3, 192, 0.6);
+            color: #F4F4F4;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #7303C0 0%, rgba(3, 0, 30, 0.9) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #F4F4F4;
+            flex-shrink: 0;
+            margin-right: 30px;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(115, 3, 192, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #7303C0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(115, 3, 192, 0.9) 0%, rgba(3, 0, 30, 0.95) 100%);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-box h3 {
+            color: #F4F4F4;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #ED572A;
+            font-weight: 700;
+        }
+
+        .frente-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .frente-otimizador {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #FFC107;
+            color: #F4F4F4;
+        }
+
+        .frente-multiplicador {
+            background: rgba(255, 87, 34, 0.2);
+            border: 2px solid #FF5722;
+            color: #F4F4F4;
+        }
+
+        .frente-native {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid #4CAF50;
+            color: #F4F4F4;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        @media print {
+            .slide {
+                page-break-after: always;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #7303C0 0%, rgba(115, 3, 192, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .key-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ED572A;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: CAPA -->
+<div class="slide" style="font-family: 'Neue Machina Regular', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(135deg, #03001E 0%, #1a0b3d 50%, #03001E 100%); overflow: hidden;">
+    <img src="simbolo-branco.png" class="logo" alt="Hyperize" style="opacity: 1; z-index: 100;">
+    <div style="position: absolute; top: 10%; right: 5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(115, 3, 192, 0.15) 0%, transparent 70%); border-radius: 50%; filter: blur(60px); z-index: 0;"></div>
+    <div style="position: absolute; bottom: 10%; left: 5%; width: 350px; height: 350px; background: radial-gradient(circle, rgba(237, 87, 42, 0.1) 0%, transparent 70%); border-radius: 50%; filter: blur(50px); z-index: 0;"></div>
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: 
+        linear-gradient(rgba(115, 3, 192, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(115, 3, 192, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px; opacity: 0.3; z-index: 0;"></div>
+    
+    <div class="content" style="text-align: center; position: relative; z-index: 10;">
+        <div style="margin-bottom: 50px; animation: fadeInDown 1s ease-out;">
+            <img src="logo-branco.png" alt="Hyperize" style="max-width: 600px; width: 85%; filter: drop-shadow(0 10px 30px rgba(115, 3, 192, 0.4));">
+        </div>
+        
+        <div style="width: 150px; height: 3px; background: linear-gradient(90deg, transparent, #ED572A, transparent); margin: 30px auto;"></div>
+        
+        <div style="font-size: 28px; font-weight: 300; letter-spacing: 4px; color: #F4F4F4; margin-bottom: 20px; text-transform: uppercase;">
+            Módulo ESG para Gestão de Fornecedores
+        </div>
+        
+        <div style="font-size: 32px; font-weight: 600; color: #F4F4F4; margin: 30px 0; line-height: 1.4;">
+            <span style="background: linear-gradient(135deg, #7303C0, #ED572A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Transforme 5-10 minutos em 10 segundos:</span><br>
+            Reduza o tempo de operação em até <span style="color: #ED572A; font-weight: 700;">95%</span>,<br>
+            e mitigue riscos regulatórios com <span style="color: #ED572A; font-weight: 700;">IA</span>
+        </div>
+        
+        <div style="display: flex; justify-content: center; gap: 30px; margin: 50px 0;">
+            <div style="background: rgba(115, 3, 192, 0.15); border: 2px solid rgba(115, 3, 192, 0.4); border-radius: 30px; padding: 12px 30px; backdrop-filter: blur(10px);">
+                <span style="color: #ED572A; font-weight: 700; font-size: 24px;">95%</span>
+                <span style="color: #F4F4F4; font-size: 14px; margin-left: 8px;">Redução de Tempo</span>
+            </div>
+            <div style="background: rgba(237, 87, 42, 0.15); border: 2px solid rgba(237, 87, 42, 0.4); border-radius: 30px; padding: 12px 30px; backdrop-filter: blur(10px);">
+                <span style="color: #ED572A; font-weight: 700; font-size: 24px;">80%</span>
+                <span style="color: #F4F4F4; font-size: 14px; margin-left: 8px;">Economia em Compliance</span>
+            </div>
+        </div>
+        
+        <div style="margin-top: 80px;">
+            <div style="font-size: 12px; color: rgba(244, 244, 244, 0.5); margin-bottom: 10px;">SCROLL PARA CONTINUAR ↓</div>
+        </div>
+    </div>
+    <div class="slide-number">01</div>
+</div>
+
+<style>
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+<!-- SLIDE 2: EXECUTIVE SUMMARY -->
+<div class="slide" style="font-family: 'Neue Machina Regular', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;">
+    <div class="content">
+    <img src="simbolo-branco.png" alt="Hyperize" style="width: 60px; height: auto; display: block; margin-bottom: 20px;">
+        <h2 style="font-size: 30px;">Executive Summary</h2>
+
+        <div class="strategy-box">
+            <p style="font-size: 20px; line-height: 1.8;">
+                Sistema de gestão de fornecedores com foco em compliance ESG (Environmental, Social, Governance), desenvolvido como módulo integrado à plataforma Hyperize. Automatiza processos críticos de cadastro, documentação e due diligence usando IA, reduzindo tempo de operação em até 95% e mitigando riscos regulatórios significativos.
+            </p>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">Proposta de Valor</h3>
+            <p style="font-size: 20px; line-height: 1.8;">
+                Transformar <span class="highlight">5-10 minutos</span> de cadastro manual em <span class="highlight">10 segundos</span> automatizados, com extração inteligente de certificados que economiza <span class="highlight">80%</span> do tempo de compliance.
+            </p>
+        </div>
+    </div>
+    <div class="slide-number">02</div>
+</div>
+
+<!-- SLIDE 3: CONTEXTO: POR QUE ESG EM TERMINAIS PORTUÁRIOS? -->
+<div class="slide" style="font-family: 'Neue Machina Regular', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;">
+    <div class="content">
+    <img src="simbolo-branco.png" alt="Hyperize" style="width: 60px; height: auto; display: block; margin-bottom: 20px;">
+        <h2>Contexto: Por que ESG em Terminais Portuários?</h2>
+        <div class="subtitle">O setor de Terminais Portuários enfrenta uma confluência de pressões globais e vulnerabilidades locais que tornam a gestão de ESG na cadeia de fornecedores uma prioridade estratégica.</div>
+
+        <div class="strategy-box optimizer">
+            <h3 style="margin-top: 0; font-size: 26px;"><span style="font-size: 48px; margin-right: 10px;">🌍</span>Pressões Regulatórias Globais</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li><strong>EU CSRD/CSDDD (2025):</strong> Empresas exportadoras devem reportar impacto ESG de toda cadeia (incluindo fornecedores), com <span class="highlight">multas de até 5% do faturamento global</span>.</li>
+                <li><strong>Financiamento Verde:</strong> Bancos oferecem taxas <span class="highlight">20-30% menores</span> para operações com compliance ESG robusto.</li>
+                <li><strong>Due Diligence Obrigatório:</strong> Monitoramento contínuo de fornecedores (condições trabalhistas, impacto ambiental, governança).</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box optimizer" style="margin-top: 40px;">
+            <h3 style="margin-top: 0; font-size: 26px;"><span style="font-size: 48px; margin-right: 10px;">🇧🇷</span>Realidade Brasileira Crítica</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li>Apenas <span class="highlight">15% das empresas</span> brasileiras analisam riscos ESG de fornecedores.</li>
+                <li><span class="highlight">65-95% do impacto de carbono</span> (Scope 3) está na cadeia de suprimentos.</li>
+                <li>Certificações vencidas passam despercebidas por falta de controle automatizado.</li>
+                <li>Processos manuais consomem horas de equipes de compliance.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">03</div>
+</div>
+
+<!-- SLIDE 4: FORNECEDORES TÍPICOS DE TERMINAL PORTUÁRIO -->
+<div class="slide">
+    <div class="content">
+    <img src="simbolo-branco.png" alt="Hyperize" style="width: 60px; height: auto; display: block; margin-bottom: 20px;">
+        <h2>Fornecedores Típicos de Terminal Portuário</h2>
+        <div class="subtitle">O módulo permitirá priorizar o due diligence nos fornecedores de Alto Risco ESG.</div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-top: 40px;">
+            <div class="strategy-box" style="border-left-color: #FF5722;">
+                <h3 style="margin-top: 0; font-size: 22px; color: #FF5722;">🔴 Alto Risco ESG</h3>
+                <p><strong>Prioridade Máxima</strong></p>
+                <ul class="bullet-list" style="font-size: 16px;">
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><strong>Operacionais:</strong> Amarração, rebocadores, OGMO.</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><em>Riscos:</em> Acidentes de trabalho, condições inseguras, emissões de combustível.</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><strong>Combustíveis/Químicos:</strong> Diesel, lubrificantes, produtos químicos.</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><em>Riscos:</em> Vazamentos, poluição ambiental, licenciamento inadequado.</li>
+                </ul>
+            </div>
+            <div class="strategy-box" style="border-left-color: #FFC107;">
+                <h3 style="margin-top: 0; font-size: 22px; color: #FFC107;">🟡 Risco Médio</h3>
+                <p><strong>Monitoramento Contínuo</strong></p>
+                <ul class="bullet-list" style="font-size: 16px;">
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><strong>Manutenção/Limpeza/Segurança:</strong> Serviços terceirizados.</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><em>Riscos:</em> Trabalho análogo à escravidão, subcontratação irregular.</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><strong>Materiais/Equipamentos:</strong> Peças, ferramentas, EPI.</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><em>Riscos:</em> Cadeia de fornecimento não-ética, falta de certificação.</li>
+                </ul>
+            </div>
+            <div class="strategy-box" style="border-left-color: #4CAF50;">
+                <h3 style="margin-top: 0; font-size: 22px; color: #4CAF50;">🟢 Risco Controlado</h3>
+                <p><strong>Verificação Padrão</strong></p>
+                <ul class="bullet-list" style="font-size: 16px;">
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><strong>Administrativos:</strong> Agentes marítimos, despachantes aduaneiros.</li>
+                    <li style="padding: 8px 0 8px 35px; line-height: 1.3;"><em>Riscos:</em> Compliance regulatório, anticorrupção.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">04</div>
+</div>
+
+<!-- SLIDE 5: PROBLEMA REAL (Dores Identificadas) -->
+<div class="slide">
+    <div class="content">
+    <img src="simbolo-branco.png" alt="Hyperize" style="width: 60px; height: auto; display: block; margin-bottom: 20px;">
+        <h2>Problema Real (Dores Identificadas)</h2>
+        
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">1. Cadastro Manual Lento e Sujeito a Erros</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li>⏱️ <span class="highlight">5-10 minutos</span> por fornecedor digitando CNPJ, razão social, endereço.</li>
+                <li>❌ Erros de digitação causam inconsistências.</li>
+                <li>📉 Baixa produtividade de equipes administrativas.</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">2. Gestão de Certificados Caótica</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li>📄 PDFs espalhados em pastas, emails, drives.</li>
+                <li>⚠️ <span class="highlight">Certificados vencem sem alerta:</span> descoberta só em auditoria.</li>
+                <li>🕐 Horas de trabalho manual para extrair dados (emissor, validade, escopo).</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">3. Ausência de Visão Estratégica ESG</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li>❓ "Quantos fornecedores têm ISO 14001 válida?" → Ninguém sabe.</li>
+                <li>❓ "Qual nosso score ESG médio?" → Não existe medição.</li>
+                <li>🎯 Impossível priorizar ações de compliance.</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">4. Risco de Auditoria e Multas</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li>🚨 Auditorias encontram lacunas em due diligence.</li>
+                <li>💰 Multas regulatórias por não-conformidade.</li>
+                <li>📉 Perda de contratos com clientes que exigem ESG.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">05</div>
+</div>
+
+<!-- SLIDE 6: SOLUÇÃO PROPOSTA: MICRO MVP (2 DIAS) -->
+<div class="slide">
+    <div class="content">
+    <img src="simbolo-branco.png" alt="Hyperize" style="width: 60px; height: auto; display: block; margin-bottom: 20px;">
+        <h2>Solução Proposta: Micro MVP (2 Dias)</h2>
+        
+        <div class="strategy-box native">
+            <h3 style="margin-top: 0; font-size: 26px;"><span style="font-size: 48px; margin-right: 10px;">✅</span>FEATURES ESSENCIAIS (CRUD Core)</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li><strong>1. Cadastro Inteligente de Fornecedores</strong></li>
+                <ul class="bullet-list" style="font-size: 16px; margin-left: 20px;">
+                    <li>Form dinâmico com campos: CNPJ, razão social, tipo, contato, status.</li>
+                    <li>Categorização automática: Operacional, Materiais, Serviços.</li>
+                    <li>Filtros e busca rápida.</li>
+                    <li><span class="highlight">Tempo de dev: 4h</span></li>
+                </ul>
+                <li><strong>2. Gestão de Certificados (Tabela Base)</strong></li>
+                <ul class="bullet-list" style="font-size: 16px; margin-left: 20px;">
+                    <li>CRUD de certificados: tipo, emissor, datas de emissão/validade.</li>
+                    <li>Upload de PDFs para Supabase Storage.</li>
+                    <li>Cálculo automático de status (Válido, Vence em 30d, Vencido).</li>
+                    <li><span class="highlight">Tempo de dev: 3h</span></li>
+                </ul>
+            </ul>
+        </div>
+
+        <div class="strategy-box multiplier" style="margin-top: 40px;">
+            <h3 style="margin-top: 0; font-size: 26px;"><span style="font-size: 48px; margin-right: 10px;">🚀</span>DIFERENCIAIS WOW (IA-Powered)</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li><strong>3. Auto-Cadastro via CNPJ (Brasil API) ⭐</strong></li>
+                <ul class="bullet-list" style="font-size: 16px; margin-left: 20px;">
+                    <li><strong>O que faz:</strong> Cliente digita apenas o CNPJ. Sistema busca automaticamente na Receita Federal (Razão social, endereço, CNAE, porte). Preenche form em <span class="highlight">10 segundos</span> vs 5-10 minutos manual.</li>
+                    <li><strong>Impacto:</strong> ⚡ <span class="highlight">90-95% de redução de tempo</span> de cadastro. ✅ <span class="highlight">Zero erros</span> de digitação. 💡 Demonstração imediata de eficiência.</li>
+                    <li><span class="highlight">Tempo de dev: 3h</span></li>
+                </ul>
+                <li><strong>4. Extração Inteligente de Certificados (IA Vision/Text) ⭐⭐⭐</strong></li>
+                <ul class="bullet-list" style="font-size: 16px; margin-left: 20px;">
+                    <li><strong>O que faz:</strong> Cliente faz upload de PDF do certificado. IA extrai automaticamente (Tipo, Número, Certificadora, Data de emissão/validade, Escopo). Criação automática de alertas de vencimento.</li>
+                    <li><strong>Impacto:</strong> ⏱️ De 5 minutos de digitação → <span class="highlight">15 segundos</span> de upload. 📊 <span class="highlight">80% de economia de tempo</span> em compliance. 🎯 <span class="highlight">Diferencial técnico único</span>. ✅ Rastreabilidade.</li>
+                    <li><span class="highlight">Tempo de dev: 5h</span></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">06</div>
+</div>
+
+<!-- SLIDE 7: PRÓXIMOS PASSOS IMEDIATOS -->
+<div class="slide">
+    <div class="content">
+    <img src="simbolo-branco.png" alt="Hyperize" style="width: 60px; height: auto; display: block; margin-bottom: 20px;">
+        <h2>Próximos Passos Imediatos</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">Fase 1</div>
+                <div class="timeline-content">
+                    <h3 style="margin-top: 0;">Aprovação (Agora)</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>✅ CEO aprova Project Brief e libera desenvolvimento.</li>
+                        <li>✅ Confirma acesso ao Supabase do projeto.</li>
+                        <li>✅ Define data da demo com cliente.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">Fase 2</div>
+                <div class="timeline-content">
+                    <h3 style="margin-top: 0;">Desenvolvimento (2 dias)</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>📊 Criar estrutura SQL (tabelas `esg_*`).</li>
+                        <li>🔧 Implementar backend (rotas API).</li>
+                        <li>🎨 Criar frontend (forms + dashboard).</li>
+                        <li>🤖 Integrar IA (CNPJ + extração certificados).</li>
+                        <li>🧪 Testes internos com dados fake.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">Fase 3</div>
+                <div class="timeline-content">
+                    <h3 style="margin-top: 0;">Demo (Dia 3)</h3>
+                    <ul class="bullet-list" style="font-size: 18px;">
+                        <li>🎬 Preparar roteiro de apresentação.</li>
+                        <li>📊 Carregar dados de exemplo realistas.</li>
+                        <li>🚀 Apresentar ao cliente com foco em economia de tempo.</li>
+                        <li>💰 Negociar próximas fases (Chat IA, Scoring ESG, Integrações).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">07</div>
+</div>
+
+<!-- SLIDE 8: APÊNDICE: CONTEXTO ESG DETALHADO -->
+<div class="slide">
+    <div class="content">
+    <img src="simbolo-branco.png" alt="Hyperize" style="width: 60px; height: auto; display: block; margin-bottom: 20px;">
+        <h2>Apêndice: Contexto ESG Detalhado</h2>
+        
+        <div class="strategy-box">
+            <h3 style="margin-top: 0;">O que é ESG?</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li><strong>E (Environmental):</strong> Emissões de carbono, gestão de resíduos, certificações ambientais (ISO 14001).</li>
+                <li><strong>S (Social):</strong> Condições de trabalho, direitos humanos, combate a trabalho escravo, diversidade.</li>
+                <li><strong>G (Governance):</strong> Transparência, anticorrupção, ética nos negócios, compliance regulatório.</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box" style="margin-top: 40px;">
+            <h3 style="margin-top: 0;">Dados de Mercado</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li><span class="highlight">65-95% das emissões</span> de uma empresa estão no Scope 3 (fornecedores).</li>
+                <li><span class="highlight">80% do impacto vem de 20%</span> das compras (Pareto aplicado).</li>
+                <li>Redução de <span class="highlight">10-30% de emissões</span> ao priorizar fornecedores sustentáveis (PwC).</li>
+                <li>Taxa de juros <span class="highlight">20-30% menor</span> para operações com ESG forte (green financing).</li>
+            </ul>
+        </div>
+
+        <div class="strategy-box" style="margin-top: 40px;">
+            <h3 style="margin-top: 0;">Regulações Aplicáveis</h3>
+            <ul class="bullet-list" style="font-size: 18px;">
+                <li><strong>EU Corporate Sustainability Reporting Directive (CSRD):</strong> Reporte obrigatório de impactos.</li>
+                <li><strong>EU Corporate Due Diligence Directive (CSDDD):</strong> Due diligence em toda cadeia.</li>
+                <li><strong>CVM 193 (Brasil):</strong> Divulgação de riscos ESG para companhias abertas.</li>
+                <li><strong>Norwegian Transparency Act:</strong> Transparência sobre impactos sociais.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">08</div>
+</div>
+
+<!-- SLIDE 9: REFERÊNCIAS -->
+<div class="slide">
+    <div class="content" style="text-align: center;">
+    <img src="logo-branco.png" alt="Hyperize" style="max-width: 450px; width: 70%; margin-bottom: 40px;">
+        
+        <div class="strategy-box" style="margin-top: 50px; text-align: left;">
+            <h3 style="margin-top: 0;">Referências</h3>
+            <ul class="bullet-list" style="font-size: 16px;">
+                <li>Brasil API (CNPJ): https://brasilapi.com.br/docs</li>
+                <li>EU ESG Regulations: https://ec.europa.eu/info/law/better-regulation</li>
+                <li>Port Terminal ESG Best Practices: Maritime ESG Reports 2025</li>
+                <li>Supplier ESG Management: BCG Supply Chain Sustainability 2023</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 80px; font-size: 16px; opacity: 0.7;">
+            <p>Documento preparado por: <strong>Mary (Business Analyst Agent)</strong></p>
+            <p>Para aprovação de: <strong>CEO</strong></p>
+            <p>Data: <strong>Janeiro 2025</strong> | Status: <strong>✅ Pronto para desenvolvimento</strong></p>
+        </div>
+    </div>
+    <div class="slide-number">09</div>
+</div>
+
+
+<script>
+    // Fallback para logo
+    document.addEventListener('DOMContentLoaded', function() {
+        // Primeiro corrige os nomes dos arquivos que estão com espaço para hífen
+        document.querySelectorAll('img').forEach(img => {
+            if (img.src.includes('simbolo branco.png')) {
+                img.src = 'simbolo-branco.png';
+            }
+            if (img.src.includes('logo branco.png')) {
+                img.src = 'logo-branco.png';
+            }
+        });
+
+        // Backup fallback para caso as imagens não carreguem
+        document.querySelectorAll('img[src*="logo"], img[src*="simbolo"]').forEach(logo => {
+            logo.onerror = function() {
+                const isWhite = this.src.includes('branco');
+                const isSymbol = this.src.includes('simbolo');
+                
+                if (isWhite) {
+                    this.src = isSymbol ? 'simbolo-azul.png' : 'logo-azul.png';
+                } else {
+                    this.src = isSymbol ? 'simbolo-branco.png' : 'logo-branco.png';
+                }
+            };
+        });
+    });
+
+    // Navegação com teclado
+    document.addEventListener('keydown', function(e) {
+        const slides = document.querySelectorAll('.slide');
+        const currentSlide = Math.round(window.pageYOffset / window.innerHeight);
+        
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            if (currentSlide < slides.length - 1) {
+                slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            if (currentSlide > 0) {
+                slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+
+    // Animações ao scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.metric-card, .strategy-box, .timeline-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
