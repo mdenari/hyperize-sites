@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ZPT Digital - Governança Executiva</title>
+
+    <!-- Reveal.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ZPT Digital Identity (Corrected) --- */
+        :root {
+            --zpt-bg: #121212;
+            --zpt-text: #ffffff;
+            --zpt-green-neon: #39FF14; /* The Brand Highlight */
+            --zpt-gray-ui: #2a2a2a;
+            --zpt-gray-text: #E0E0E0;
+        }
+
+        body {
+            background: var(--zpt-bg);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .reveal {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--zpt-text);
+        }
+
+        /* Backgrounds */
+        .reveal .slides section {
+            background: transparent;
+        }
+        
+        .zpt-bg {
+            background: var(--zpt-bg) !important;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif !important;
+            text-transform: uppercase !important;
+            letter-spacing: -0.02em !important;
+        }
+
+        h1 {
+            font-weight: 900 !important;
+            color: var(--zpt-text);
+            font-size: 2.2em !important; /* Final reduction */
+            margin-bottom: 0.2em !important;
+        }
+
+        h2 {
+            color: var(--zpt-green-neon) !important;
+            font-weight: 700 !important;
+            border-bottom: 2px solid var(--zpt-green-neon);
+            display: inline-block;
+            padding-bottom: 8px; /* Adjusted padding */
+            font-size: 1.4em !important; /* Final reduction */
+        }
+
+        .highlight {
+            color: var(--zpt-green-neon);
+            font-weight: bold;
+        }
+
+        .sub-text {
+            font-size: 0.45em !important; /* Final reduction */
+            color: var(--zpt-gray-text);
+            margin-top: 1.5rem !important; /* Adjusted margin */
+        }
+
+        /* Logo */
+        .logo-main {
+            width: 180px; /* Adjusted */
+            margin-bottom: 25px; /* Adjusted margin */
+        }
+        
+        .logo-footer {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 70px; /* Adjusted */
+            opacity: 0.25; /* More subtle */
+            z-index: 9999;
+        }
+
+        /* Components */
+        .card-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px; /* Adjusted */
+            margin-top: 20px; /* Adjusted */
+        }
+
+        .card {
+            background: var(--zpt-gray-ui);
+            border-left: 3px solid var(--zpt-green-neon); /* Reduced border */
+            border-radius: 4px;
+            padding: 12px; /* Adjusted */
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px); /* Reduced hover effect */
+            background: #333;
+        }
+
+        .card h3 {
+            font-size: 0.85em !important; /* Adjusted */
+            color: var(--zpt-green-neon);
+            margin-bottom: 8px; /* Adjusted margin */
+            font-weight: 700;
+        }
+
+        .card p, .card li {
+            font-size: 0.55em !important; /* Adjusted */
+            line-height: 1.4; /* Slightly reduced line-height */
+            color: #ddd;
+        }
+
+        .number-big {
+            font-size: 1.6em !important; /* Adjusted */
+            font-weight: 900;
+            color: #ff4d4d; /* Red for negative */
+        }
+        
+        .number-green {
+            color: var(--zpt-green-neon);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px; /* Adjusted */
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            z-index: 1;
+            background: var(--zpt-bg);
+            padding: 10px; /* Reduced padding */
+            border: 1px solid var(--zpt-green-neon);
+            border-radius: 50%; /* Circle nodes */
+            width: 90px; /* Adjusted */
+            height: 90px; /* Adjusted */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0; /* Prevent shrinking too much */
+        }
+
+        .timeline-date {
+            font-weight: 900;
+            color: var(--zpt-green-neon);
+            font-size: 0.65em !important; /* Adjusted */
+        }
+        
+        .timeline-content {
+            font-size: 0.4em !important; /* Adjusted */
+            margin-top: 3px; /* Adjusted margin */
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        ul.checklist {
+            list-style: none;
+            text-align: left;
+            margin: 0 auto;
+            width: 65%; /* Adjusted width for more space */
+        }
+
+        ul.checklist li {
+            padding: 12px; /* Reduced padding */
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.7em !important; /* Adjusted */
+        }
+
+        ul.checklist li::before {
+            content: '✓';
+            color: var(--zpt-green-neon);
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        /* --- Slide 6: Journey Steps (Refactored) --- */
+        .journey-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 10px; /* Reduced gap */
+            margin-top: 30px; /* Reduced margin */
+            width: 100%;
+            flex-wrap: nowrap; /* Force single line */
+        }
+
+        .journey-step {
+            background: rgba(255,255,255,0.05);
+            border-top: 3px solid var(--zpt-green-neon);
+            padding: 15px; /* Reduced padding */
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .journey-step .step-number {
+            color: var(--zpt-green-neon);
+            font-weight: 900;
+            font-size: 1.2em; /* Reduced size */
+            margin-bottom: 5px;
+        }
+
+        .journey-step .step-title {
+            font-size: 0.85em; /* Reduced size */
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .journey-step .step-description {
+            font-size: 0.45em; /* Reduced size */
+            line-height: 1.3;
+            margin-top: auto;
+            color: #ddd;
+        }
+
+        .journey-arrow {
+            display: flex;
+            align-items: center;
+            color: var(--zpt-green-neon);
+            font-size: 1.0em; /* Reduced size */
+            flex-shrink: 0; /* Prevent arrow from shrinking */
+        }
+
+        /* NEW CSS RULE: Override Reveal.js default content width for expanded slides */
+        .reveal .slides section[style*="max-width: 95vw"] > .r-stack,
+        .reveal .slides section[style*="max-width: 95vw"] > .r-frame {
+            max-width: none !important;
+            width: 100% !important;
+            padding: 0 !important;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE 1: CAPA -->
+            <section class="zpt-bg">
+                <div style="margin-bottom: 60px;">
+                    <img src="ZPT - Logotipo Branco Ativo 33.png" class="logo-main" alt="ZPT Digital Logo">
+                </div>
+                <h1>GOVERNANÇA EXECUTIVA</h1>
+                <h3 style="color: var(--zpt-green-neon); font-weight: 300; text-transform: none !important; margin-top: 20px;">Simplicidade, Dados & Ação</h3>
+                <p class="sub-text" style="margin-top: 60px !important;">Kick-off Dezembro/2025</p>
+            </section>
+
+            <!-- SLIDE 2: CONCEITO -->
+            <section class="zpt-bg">
+                <div style="position: absolute; top: 10px; left: 20px;">
+                    <img src="ZPT - Logotipo Branco Ativo 33.png" style="width: 180px;">
+                </div>
+                <h2 style="margin-top: 80px !important;">A Nova Dinâmica</h2>
+                <div style="display: flex; justify-content: center; align-items: start; gap: 60px; margin-top: 40px;">
+                    <div style="text-align: center; opacity: 0.4; width: 300px;">
+                        <h4 style="margin-bottom: 5px;">Report de Status</h4>
+                        <p style="font-size: 0.5em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">O que já passou</p>
+                        <p style="font-size: 0.6em;">Justificar números e erros do mês anterior.</p>
+                        <p style="font-size: 0.5em; font-style: italic; margin-top: 10px;">"Não entregamos porque faltou braço..."</p>
+                    </div>
+                    <div style="font-size: 2em; color: var(--zpt-green-neon); margin-top: 15px;">➜</div>
+                    <div style="text-align: center; width: 300px;">
+                        <h4 class="highlight" style="font-size: 1.0em !important; margin-bottom: 5px;">Board Consultivo</h4>
+                        <p style="font-size: 0.5em; text-transform: uppercase; letter-spacing: 1px; color: var(--zpt-green-neon); margin-bottom: 10px;">O que faremos</p>
+                        <p style="font-size: 0.6em;">Construir solução para bater a meta futura.</p>
+                        <p style="font-size: 0.5em; color: var(--zpt-green-neon); margin-top: 10px;">Ex: "Preciso de orçamento para contratar e entregar dia 15."</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2.5: A DINÂMICA GERAL -->
+            <section class="zpt-bg">
+                <div style="position: absolute; top: 10px; left: 20px;">
+                    <img src="ZPT - Logotipo Branco Ativo 33.png" style="width: 180px;">
+                </div>
+                <h2 style="margin-top: 80px !important; font-size: 1.1em !important; color: #ffffff !important;">A Dinâmica Geral: REV & RGA</h2>
+                <div style="display: flex; justify-content: center; gap: 30px; margin-top: 40px; text-align: left;">
+                    <div class="card" style="width: 45%; padding: 30px; border-left: 3px solid var(--zpt-green-neon);">
+                        <h3 style="color: var(--zpt-green-neon); font-size: 0.9em !important;">Reunião Estratégica da Vertical (REV)</h3>
+                        <p style="font-size: 0.6em;">Rituais semanais focados exclusivamente no negócio de cada área (Comex, Docs&Flow, Hyperize).</p>
+                        <ul style="font-size: 0.55em; margin-left: 15px; margin-top: 10px; line-height: 1.5;">
+                            <li>Líder com autonomia total</li>
+                            <li>Restante do grupo como conselho</li>
+                            <li>Acontecem nas 3 primeiras semanas</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="width: 45%; padding: 30px; border-left: 3px solid #e2498a;">
+                        <h3 style="color: #e2498a; font-size: 0.9em !important;">Reunião Geral de Alinhamento (RGA)</h3>
+                        <p style="font-size: 0.6em;">Fórum integrado para consolidar resultados, buscar sinergias e planejar o próximo ciclo.</p>
+                        <ul style="font-size: 0.55em; margin-left: 15px; margin-top: 10px; line-height: 1.5;">
+                            <li>Preparada pelas REV's</li>
+                            <li>Visão holística da Holding</li>
+                            <li>Ocorre na última semana do ciclo</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="sub-text" style="margin-top: 30px !important;">**REV:** Reunião Estratégica da Vertical &nbsp;&nbsp;&nbsp; **RGA:** Reunião Geral de Alinhamento</p>
+            </section>
+
+            <!-- SLIDE 3A: O CANVAS - NEGÓCIO (Q1 & Q2) -->
+            <section class="zpt-bg" style="width: 100% !important; max-width: 95vw !important; padding: 0 !important; left: 50% !important; transform: translateX(-50%) !important;">
+                <div style="position: absolute; top: 10px; left: 20px;">
+                    <img src="ZPT - Logotipo Branco Ativo 33.png" style="width: 180px;">
+                </div>
+                <h3 style="font-size: 1.0em; letter-spacing: 2px; color: #fff; margin-bottom: 25px; margin-top: 70px !important;">O Canvas: Foco no Negócio</h3>
+                
+                <div class="card-container" style="gap: 20px; margin-top: 20px; grid-template-columns: 1fr 1fr; width: 100%;">
+                    
+                    <!-- Q1 -->
+                    <div class="card" style="padding: 45px; height: 100%;">
+                        <div style="color: var(--zpt-green-neon); font-weight: 900; font-size: 1.0em; margin-bottom: 8px;">Q1</div>
+                        <h3 style="font-size: 0.65em !important; margin-bottom: 10px;">Comercial & Clientes</h3>
+                        <p style="font-size: 0.6em; color: #aaa; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px; font-style: italic;">"Onde está o dinheiro?"</p>
+                        
+                        <ul style="font-size: 0.65em; margin-left: 20px; color: #ddd; line-height: 1.6;">
+                            <li><strong>Curva ABC:</strong> Top 5 clientes (curva A) e status atual deles. (Churn - Suporte - Upsell)</li>
+                            <li><strong>Pipeline:</strong> Volume total em aberto e principais negociações em andamento.</li>
+                            <li><strong>Forecast:</strong> Valor esperado para o mês e status das principais oportunidades em avanço.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Q2 (Antigo Q3) -->
+                    <div class="card" style="padding: 45px; height: 100%;">
+                        <div style="color: var(--zpt-green-neon); font-weight: 900; font-size: 1.0em; margin-bottom: 8px;">Q2</div>
+                        <h3 style="font-size: 0.65em !important; margin-bottom: 10px;">Produto & Escala</h3>
+                        <p style="font-size: 0.6em; color: #aaa; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px; font-style: italic;">"Estamos crescendo com qualidade?"</p>
+
+                        <ul style="font-size: 0.65em; margin-left: 20px; color: #ddd; line-height: 1.6;">
+                            <li><strong>Escalabilidade:</strong> Potencial de replicação do produto para novos clientes sem customização.</li>
+                            <li><strong>Churn (12m):</strong> Análise da taxa de cancelamento e planos de mitigação para as principais causas.</li>
+                            <li><strong>UX:</strong> Melhorias implementadas e impacto direto na jornada do cliente (Ex: cliques reduzidos, tempo economizado).</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SLIDE 3B: O CANVAS - ESTRATÉGIA (Q3 & Q4) -->
+            <section class="zpt-bg" style="width: 100% !important; max-width: 95vw !important; padding: 0 !important; left: 50% !important; transform: translateX(-50%) !important;">
+                <div style="position: absolute; top: 10px; left: 20px;">
+                    <img src="ZPT - Logotipo Branco Ativo 33.png" style="width: 180px;">
+                </div>
+                <h3 style="font-size: 1.0em; letter-spacing: 2px; color: #fff; margin-bottom: 25px; margin-top: 70px !important;">O Canvas: Foco na Estratégia</h3>
+                
+                <div class="card-container" style="gap: 20px; margin-top: 20px; grid-template-columns: 1fr 1fr; width: 100%;">
+                    
+                    <!-- Q3 (Antigo Q2) -->
+                    <div class="card" style="padding: 45px; height: 100%;">
+                        <div style="color: var(--zpt-green-neon); font-weight: 900; font-size: 1.0em; margin-bottom: 8px;">Q3</div>
+                        <h3 style="font-size: 0.65em !important; margin-bottom: 10px;">Tecnologia</h3>
+                        <p style="font-size: 0.6em; color: #aaa; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px; font-style: italic;">"Modernização contínua"</p>
+                        
+                        <ul style="font-size: 0.65em; margin-left: 20px; color: #ddd; line-height: 1.6;">
+                            <li><strong>Incremental:</strong> Correções e otimizações necessárias no produto atual (ex: bugs, refatoração).</li>
+                            <li><strong>Disruptivo:</strong> Novas funcionalidades ou tecnologias que criam diferencial competitivo (Ex: Agentes IA).</li>
+                            <li><strong>Segurança:</strong> Principais vulnerabilidades identificadas e plano de prevenção/conformidade.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="card" style="padding: 45px; height: 100%; border-left: 4px solid #e2498a !important;">
+                        <div style="color: #e2498a; font-weight: 900; font-size: 1.0em; margin-bottom: 8px;">Q4</div>
+                        <h3 style="font-size: 0.65em !important; margin-bottom: 10px; color: #e2498a !important;">Conselho (Board)</h3>
+                        <p style="font-size: 0.6em; color: #aaa; margin-bottom: 15px; border-bottom: 1px solid #e2498a; padding-bottom: 10px; font-style: italic;">"Onde a mágica acontece"</p>
+
+                        <ul style="font-size: 0.65em; margin-left: 20px; color: #ddd; line-height: 1.6;">
+                            <li><strong>Dilemas Estratégicos:</strong> Traga o problema difícil para o grupo resolver.</li>
+                            <li><strong>Sinergia Pura:</strong> "Preciso que a Vertical X me ajude com Y."</li>
+                            <li><strong>Decisão:</strong> Saímos daqui com ação definida.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SLIDE 4: O RITUAL PRÉ-REUNIÃO (PRACTICAL GUIDE) -->
+            <section class="zpt-bg">
+                <div style="position: absolute; top: 10px; left: 20px;">
+                    <img src="ZPT - Logotipo Branco Ativo 33.png" style="width: 180px;">
+                </div>
+                <h2 style="margin-top: 70px !important; font-size: 0.9em !important;">O Ritual Pré-Reunião: A Matemática</h2>
+                <p style="font-size: 0.35em; color: #aaa; margin-top: -8px; margin-bottom: 30px;">Como preparar sua apresentação antes de preencher o Canvas.</p>
+                
+                <div style="display: flex; justify-content: center; gap: 15px; align-items: stretch; margin-top: 20px;">
+                    
+                    <!-- Passo 1: Input -->
+                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid #555; border-radius: 8px; padding: 20px; flex: 1; text-align: left;">
+                        <h4 style="font-size: 0.5em; margin-bottom: 10px; color: #fff;">1. O Input (Dados)</h4>
+                        <p style="font-size: 0.4em; color: #ddd; line-height: 1.4; margin-bottom: 15px;">
+                            Na <strong>quarta-feira</strong> anterior, alinhe com a Controladoria:
+                        </p>
+                        <ul style="font-size: 0.38em; color: #aaa; padding-left: 15px; line-height: 1.4;">
+                            <li><strong>Seu Realizado (YTD):</strong> O que sua vertical entregou até agora.</li>
+                            <li><strong>Sua Meta:</strong> O número exato que a Holding espera de você.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Conector Visual -->
+                    <div style="display: flex; align-items: center; color: var(--zpt-green-neon); font-size: 1.2em;">➜</div>
+
+                    <!-- Passo 2: Análise -->
+                    <div style="background: rgba(255, 77, 77, 0.1); border: 1px solid #ff4d4d; border-radius: 8px; padding: 20px; flex: 1; text-align: left;">
+                        <h4 style="font-size: 0.5em; margin-bottom: 10px; color: #ff4d4d;">$Gap (The True)</h4>
+                        <p style="font-size: 0.4em; color: #ddd; line-height: 1.4; margin-bottom: 15px;">
+                            Calcule a diferença matemática. <br>Ex: "Estamos R$ 50k abaixo da margem ideal."
+                        </p>
+                        <p style="font-size: 0.35em; font-style: italic; opacity: 0.8;">"Não ignore o problema. Meça o tamanho dele."</p>
+                    </div>
+
+                    <!-- Conector Visual -->
+                    <div style="display: flex; align-items: center; color: var(--zpt-green-neon); font-size: 1.2em;">➜</div>
+
+                    <!-- Passo 3: Ação -->
+                    <div style="background: rgba(57, 255, 20, 0.1); border: 1px solid var(--zpt-green-neon); border-radius: 8px; padding: 20px; flex: 1; text-align: left;">
+                        <h4 style="font-size: 0.5em; margin-bottom: 10px; color: var(--zpt-green-neon);">3. A Resposta (Canvas)</h4>
+                        <p style="font-size: 0.4em; color: #ddd; line-height: 1.4; margin-bottom: 15px;">
+                            Preencha o Canvas para <strong>fechar a conta</strong>.
+                        </p>
+                        <ul style="font-size: 0.38em; color: #aaa; padding-left: 15px; line-height: 1.4;">
+                            <li>Se faltam 50k, o Q1 (Vendas) e Q2 (Produto) devem somar +50k.</li>
+                            <li>O Canvas não é "brainstorm". É seu <strong>Plano de Pagamento</strong>.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SLIDE 5: CALENDÁRIO DEZEMBRO -->
+            <section class="zpt-bg">
+                <div style="position: absolute; top: 10px; left: 20px;">
+                    <img src="ZPT - Logotipo Branco Ativo 33.png" style="width: 180px;">
+                </div>
+                <h2 style="margin-top: 80px !important;">Calendário Dez/25</h2>
+                <div class="timeline" style="margin-top: 60px;">
+                    <div class="timeline-item" style="border: none; background: transparent; width: auto; height: auto;">
+                        <div class="timeline-date" style="font-size: 1.2em !important;">01</div>
+                        <div class="timeline-content">Kick-off</div>
+                    </div>
+                    <div class="timeline-item" style="border: none; background: transparent; width: auto; height: auto;">
+                        <div class="timeline-date" style="font-size: 1.2em !important;">08</div>
+                        <div class="timeline-content">Vertical XYZ</div>
+                    </div>
+                    <div class="timeline-item" style="border: none; background: transparent; width: auto; height: auto;">
+                        <div class="timeline-date" style="font-size: 1.2em !important;">15</div>
+                        <div class="timeline-content">Comex</div>
+                    </div>
+                    <div class="timeline-item" style="border: none; background: transparent; width: auto; height: auto;">
+                        <div class="timeline-date" style="font-size: 1.2em !important;">22</div>
+                        <div class="timeline-content">Hyperize</div>
+                    </div>
+                    <div class="timeline-item" style="border: none; background: transparent; width: auto; height: auto;">
+                        <div class="timeline-date" style="font-size: 1.2em !important; color: #fff;">29</div>
+                        <div class="timeline-content" style="color: #fff;">Fechamento</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: O PADRÃO ESPERADO (BENCHMARK) -->
+            <section class="zpt-bg" style="width: 100% !important; max-width: 95vw !important; padding: 0 !important; left: 50% !important; transform: translateX(-50%) !important;">
+                <div style="position: absolute; top: 10px; left: 20px;">
+                    <img src="ZPT - Logotipo Branco Ativo 33.png" style="width: 140px;">
+                </div>
+                <!-- Reduced Title Top Margin and Size -->
+                <h2 style="margin-top: 70px !important; font-size: 0.8em !important; margin-bottom: 5px !important; color: #ffffff !important;">O Padrão Esperado (The Gold Standard)</h2>
+                <p style="font-size: 0.35em; color: #aaa; margin-top: 0px; margin-bottom: 15px;">Não traga intenções. Traga ações que fechem o Gap.</p>
+                
+                <!-- Reduced Grid Gap -->
+                <div class="card-container" style="gap: 10px; margin-top: 10px; grid-template-columns: 1fr 1fr; width: 100%;">
+                    
+                    <!-- Q1 Example -->
+                    <div class="card" style="padding: 12px; height: 100%;">
+                        <div style="color: var(--zpt-green-neon); font-weight: 900; font-size: 0.6em; margin-bottom: 2px;">Q1 (Comercial)</div>
+                        <!-- Compacted Content -->
+                        <div style="line-height: 1.1;">
+                            <div style="margin-bottom: 2px;">
+                                <span style="color: #ff4d4d; font-weight: bold; font-size: 0.45em;">❌ Ruim:</span>
+                                <span style="color: #aaa; font-size: 0.45em; font-style: italic;"> "Precisamos vender mais este mês."</span>
+                            </div>
+                            <div>
+                                <span style="color: var(--zpt-green-neon); font-weight: bold; font-size: 0.45em;">✅ Bom:</span>
+                                <span style="color: #fff; font-size: 0.45em;"> "Fechar Cliente X (R$ 50k) até dia 15 p/ cobrir Gap."</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q2 Example -->
+                    <div class="card" style="padding: 12px; height: 100%;">
+                        <div style="color: var(--zpt-green-neon); font-weight: 900; font-size: 0.6em; margin-bottom: 2px;">Q2 (Produto)</div>
+                        <div style="line-height: 1.1;">
+                            <div style="margin-bottom: 2px;">
+                                <span style="color: #ff4d4d; font-weight: bold; font-size: 0.45em;">❌ Ruim:</span>
+                                <span style="color: #aaa; font-size: 0.45em; font-style: italic;"> "Melhorar a usabilidade."</span>
+                            </div>
+                            <div>
+                                <span style="color: var(--zpt-green-neon); font-weight: bold; font-size: 0.45em;">✅ Bom:</span>
+                                <span style="color: #fff; font-size: 0.45em;"> "Reduzir cliques no checkout de 5 para 2 (Escala)."</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q3 Example -->
+                    <div class="card" style="padding: 12px; height: 100%;">
+                        <div style="color: var(--zpt-green-neon); font-weight: 900; font-size: 0.6em; margin-bottom: 2px;">Q3 (Tecnologia)</div>
+                        <div style="line-height: 1.1;">
+                            <div style="margin-bottom: 2px;">
+                                <span style="color: #ff4d4d; font-weight: bold; font-size: 0.45em;">❌ Ruim:</span>
+                                <span style="color: #aaa; font-size: 0.45em; font-style: italic;"> "Arrumar bugs do sistema."</span>
+                            </div>
+                            <div>
+                                <span style="color: var(--zpt-green-neon); font-weight: bold; font-size: 0.45em;">✅ Bom:</span>
+                                <span style="color: #fff; font-size: 0.45em;"> "Refatorar Login p/ eliminar 30% dos chamados."</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q4 Example -->
+                    <div class="card" style="padding: 12px; height: 100%; border-left: 4px solid #e2498a !important;">
+                        <div style="color: #e2498a; font-weight: 900; font-size: 0.6em; margin-bottom: 2px;">Q4 (Board)</div>
+                        <div style="line-height: 1.1;">
+                            <div style="margin-bottom: 2px;">
+                                <span style="color: #ff4d4d; font-weight: bold; font-size: 0.45em;">❌ Ruim:</span>
+                                <span style="color: #aaa; font-size: 0.45em; font-style: italic;"> "Estou precisando de gente."</span>
+                            </div>
+                            <div>
+                                <span style="color: var(--zpt-green-neon); font-weight: bold; font-size: 0.45em;">✅ Bom:</span>
+                                <span style="color: #fff; font-size: 0.45em;"> "Dilema: Contratar 1 Senior (Rápido) ou 2 Jrs?"</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div style="margin-top: 25px;">
+                    <h4 style="color: #fff; font-size: 0.7em !important; opacity: 0.8;">Vamos fazer história em 2026.</h4>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            backgroundTransition: 'fade'
+        });
+    </script>
+</body>
+</html>

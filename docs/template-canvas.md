@@ -8,6 +8,26 @@
 
 ---
 
+## 🧭 Painel de Controle: A Matemática (Preenchimento Obrigatório)
+*Realize este exercício ANTES de planejar as ações do Canvas. Se a conta não fechar, revise suas estratégias.*
+
+### 1. O Diagnóstico (Dados da Controladoria)
+*   **Realizado (YTD):** [R$ Valor / % Margem Atual]
+*   **Meta (Alvo):** [R$ Valor / % Margem Esperada]
+
+### 2. O Gap (O Problema)
+*   **Diferença:** [Qual o valor exato que falta para bater a meta?]
+    *   *Ex: "Faltam R$ 50k de margem mensal."*
+
+### 3. A Prova Real (Seu Plano Paga a Conta?)
+*   **Impacto Estimado das Ações Abaixo:**
+    *   Q1 (Comercial): + R$ [Valor]
+    *   Q2 (Produto): + R$ [Valor]
+    *   Q3 (Tecnologia/Custo): - R$ [Valor]
+    *   **Total:** [A soma cobre o Gap?]
+
+---
+
 ## Q1: Comercial & Clientes (Onde está o dinheiro?)
 *Visão clara da carteira, pipeline e comportamento do cliente.*
 
@@ -15,37 +35,30 @@
 *   **Top 3 Clientes (Curva A):** [Quem são? Status atual?]
 *   **Churn (Últimos 12 meses):** [Taxa atual % | Principais motivos]
 *   **Mapa de Contatos/Personas:** [Estamos falando com quem decide? (Sim/Não)]
-
+ cooo poderia
 ### 💰 Pipeline & Forecast
 *   **Pipeline Ativo:** [Valor total em negociação]
 *   **Forecast (Previsão Fechamento):** [O que entra este mês com 90% certeza?]
 
 ---
 
-## Q2: Tecnologia & Roadmap (Modernização ZPT)
-*Alinhamento com "Modernização Constante e Automação".*
+## Q2: Produto & Escala (Crescimento com Qualidade)
+*Foco em produtos que crescem sem aumentar custo na mesma proporção e na experiência do cliente.*
 
-### 🛠️ Roadmap Incremental (O dia a dia)
-*   [Melhorias contínuas, correções de bugs, passivo técnico resolvido]
-
-### 🚀 Roadmap Disruptivo (Inovação)
-*   [Qual a "Big Idea"? O que estamos criando que muda o jogo?]
-*   [Uso de Agentes/Automação: Onde aplicamos IA este mês?]
-
-### 🛡️ Segurança & Estabilidade
-*   [Vulnerabilidades mapeadas e ações de mitigação]
+### 📈 Escalabilidade & Churn
+*   **Escalabilidade:** Potencial de replicação do produto para novos clientes sem customização. (O que é replicável?)
+*   **Churn (12m):** Análise da taxa de cancelamento e planos de mitigação para as principais causas. (Onde estamos perdendo cliente?)
+*   **UX: Simplicidade:** Melhorias implementadas e impacto direto na jornada do cliente (Ex: cliques reduzidos, tempo economizado).
 
 ---
 
-## Q3: Produto & Escala (Crescimento)
-*Foco em produtos que crescem sem aumentar custo na mesma proporção.*
+## Q3: Tecnologia (Modernização ZPT)
+*Alinhamento com "Modernização Constante e Automação".*
 
-### 📈 Escalabilidade & Replicabilidade
-*   [Qual produto/feature atual é facilmente replicável para outros clientes?]
-*   [Onde estamos muito "customizados" (serviço) e precisamos virar "produto"?]
-
-### ✨ Simplicidade (UX)
-*   [Melhoria implementada para reduzir atrito do usuário]
+### 🛠️ Roadmap & Inovação
+*   **Incremental:** Correções e otimizações necessárias no produto atual (bugs, refatoração).
+*   **Disruptivo:** Novas funcionalidades ou tecnologias que criam diferencial competitivo (Ex: Agentes IA).
+*   **Segurança:** Principais vulnerabilidades identificadas e plano de prevenção/conformidade.
 
 ---
 

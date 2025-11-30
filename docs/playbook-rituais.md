@@ -35,24 +35,21 @@ Ciclo rotativo para profundidade em cada vertical, culminando na visão integrad
 
 **Base:** Hyperize Executive Canvas v2.0 (Preenchimento obrigatório pré-reunião)
 
-### **Bloco 1: Comercial & Carteira (15 min)**
-*   **O que apresentar:** Curva ABC (visual), Mapa de Contatos/Personas, Pipeline e Forecast.
-*   **A Pergunta:** "Onde está o dinheiro e quem são os clientes que sustentam a operação?"
+### **Q1: Comercial & Clientes (15 min)**
+*   **O que apresentar:** Curva ABC: Top 5 clientes (curva A) e status atual deles (Churn - Suporte - Upsell); Pipeline: Volume total em aberto e principais negociações em andamento; Forecast: Valor esperado para o mês e status das principais oportunidades em avanço.
+*   **A Pergunta:** "Onde está o dinheiro? Quem são os Top 5 clientes e qual o status do Pipeline/Forecast?"
 
-### **Bloco 2: Tecnologia & Roadmap (15 min)**
-*   **O que apresentar:**
-    *   *Incremental:* Melhorias do dia a dia.
-    *   *Disruptivo:* Inovação real (Modernização).
-    *   *Segurança:* Riscos mapeados.
-*   **A Pergunta:** "Estamos apenas consertando ou estamos evoluindo a plataforma?"
+### **Q2: Produto & Escala (15 min)**
+*   **O que apresentar:** Escalabilidade: Potencial de replicação do produto para novos clientes sem customização; Churn (12m): Análise da taxa de cancelamento e planos de mitigação para as principais causas; UX: Melhorias implementadas e impacto direto na jornada do cliente.
+*   **A Pergunta:** "Estamos crescendo com qualidade? O produto escala ou exige muita mão de obra? Onde estamos perdendo cliente?"
 
-### **Bloco 3: Produto & Escala (15 min)**
-*   **O que apresentar:** Produtos escaláveis vs. Serviços manuais. Métricas de Churn (12 meses).
-*   **A Pergunta:** "O que é replicável? Onde estamos perdendo cliente?"
+### **Q3: Tecnologia (15 min)**
+*   **O que apresentar:** Incremental: Correções e otimizações necessárias no produto atual; Disruptivo: Novas funcionalidades ou tecnologias que criam diferencial competitivo (Ex: Agentes IA); Segurança: Principais vulnerabilidades identificadas e plano de prevenção/conformidade.
+*   **A Pergunta:** "O que é manutenção e o que é inovação real? Como está a segurança?"
 
-### **Bloco 4: Conselho & Decisão (15 min)**
-*   **O que apresentar:** Pontos de decisão críticos. Pedidos de ajuda ao grupo.
-*   **A Pergunta:** "Onde preciso da visão estratégica dos meus pares?"
+### **Q4: Conselho (Board) (15 min)**
+*   **O que apresentar:** Dilemas Estratégicos: Traga o problema difícil para o grupo resolver; Sinergia Pura: "Preciso que a Vertical X me ajude com Y."; Decisão: Saímos daqui com ação definida.
+*   **A Pergunta:** "Quais são os dilemas estratégicos que o grupo pode ajudar a resolver e quais decisões precisamos tomar hoje?"
 
 ---
 
