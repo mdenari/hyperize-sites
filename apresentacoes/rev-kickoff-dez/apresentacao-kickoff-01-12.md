@@ -24,11 +24,11 @@ Apresentar a nova dinâmica de reuniões mensais ("Board Consultivo"), alinhar o
 ### Slide 3A: O Canvas - Foco no Negócio (Q1 & Q2)
 > "Para guiar a reunião, usaremos o **ZPT Executive Canvas**. Ele é dividido em 4 partes.
 > **Q1 (Comercial):** Quero ver onde está o dinheiro. Quem são os Top 5 clientes (Curva A)? Qual o status deles (Risco? Upsell?)? E o Pipeline real.
-> **Q2 (Produto):** Estamos crescendo com qualidade? O produto escala ou exige muita mão de obra? E o Churn: quem saiu e por quê?"
+> **Q2 (Produto & Eficiência):** Aqui, o foco é claro: estamos crescendo com **eficiência**? Se você tem **produto**, quero ver o potencial de **replicação** sem customização. Se sua vertical é de **serviço**, traga os ganhos de **eficiência operacional** (automação, padronização). No **Churn**, traga o **dado do mês** (causa raiz e plano de ação imediato) e a **tendência dos últimos 12 meses**. E para **UX/CX**, esqueçam achismos: tragam **métricas de negócio claras** (ex: redução de tickets, aumento de NPS). O Playbook detalha isso.
 
 ### Slide 3B: O Canvas - Foco na Estratégia (Q3 & Q4)
 > "A segunda parte do Canvas foca em como chegamos lá.
-> **Q3 (Tecnologia):** O que é manutenção (Incremental) e o que é inovação real (Disruptivo)? E claro, Segurança.
+> **Q3 (Tecnologia - Inovação & Segurança com Dados):** Aqui, quero a verdade sobre a **alocação de time**. Quanto do seu time está focado em **Inovação Real (Disruptivo)** – construindo o futuro? E quanto está apenas em **Manutenção (Incremental)** – apagando incêndios? Provem com percentuais de alocação de esforço ou budget. Em **Segurança**, não tragam só problemas, tragam o **Plano de Mitigação** para as vulnerabilidades críticas, com prazos e responsáveis claros. O Playbook tem os detalhes.
 > **Q4 (Conselho):** Aqui é onde a mágica acontece. Tragam seus dilemas estratégicos. Usem o grupo para resolver problemas que sozinhos vocês não conseguem. Sinergia pura."
 
 ### Slide 4: O Ritual Pré-Reunião (A Matemática)
