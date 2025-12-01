@@ -1,9 +1,9 @@
 [
     {
-        "name": "REV - Kickoff Executivo Dez/25",
+        "name": "REV Kickoff Dezembro",
         "slug": "rev-kickoff-dez",
-        "path": "/apresentacoes/rev-kickoff-dez/apresentacao.html",
-        "protected": true,
-        "date": "2025-11-30 21:16:29"
+        "path": "/apresentacoes/rev-kickoff-dez/index.html",
+        "protected": false,
+        "date": "2025-11-30 22:36:46"
     }
 ]
