@@ -1,0 +1,38 @@
+{
+  "rewrites": [
+    {
+      "source": "/apresentacoes/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.hyperize.com.br"
+        }
+      ],
+      "destination": "/public/apresentacoes/:path*"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "docs.hyperize.com.br"
+        }
+      ],
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "show.hyperize.com.br"
+        }
+      ],
+      "destination": "/apresentacao_comercial_btp.html"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/:path*"
+    }
+  ]
+}
