@@ -169,7 +169,14 @@ def main():
         shutil.rmtree(target_dir, onerror=remove_readonly)
     
     try:
-        shutil.copytree(args.source, target_dir, ignore=shutil.ignore_patterns('.git', '.github', '__pycache__', 'node_modules', '_deploy_tool', '.vercel', 'venv', '.env'))
+        shutil.copytree(args.source, target_dir, ignore=shutil.ignore_patterns(
+            '.git', '.github', '__pycache__', 'node_modules', '_deploy_tool', '.vercel', 'venv', '.env',
+            '.claude', '.docker', 'agents', 'bmb', 'bmm', 'config', 'core', 'data', 'docs', 'Projeto_Esg',
+            'scripts', 'src', 'tests', 'workflows',
+            '.env.example', '.gitignore', 'git-push.bat', 'menu_template.html', 'middleware.js', 'presentations.json',
+            'publish*.py', 'README.md', 'start-*.bat', 'vercel*.json',
+            'image-prompts.md', 'objetivo.md', 'Projeto_ExecutiveMeeting_Brainstorm.md', 'ERROR_POSTMORTEM.md', 'CHECKPOINT-*.md'
+        ))
         print("✅ Files copied.")
     except Exception as e:
         print(f"❌ Copy Error: {e}")

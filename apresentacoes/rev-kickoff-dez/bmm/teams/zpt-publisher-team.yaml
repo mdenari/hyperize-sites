@@ -1,8 +1,0 @@
-team:
-  name: ZPT Publisher Team
-  description: Team responsible for defining and implementing the ZPT Publisher CLI project.
-  members:
-    - agent: analyst
-      role: Provides project analysis, functional requirements, and naming suggestions.
-    - agent: cto
-      role: Defines technical architecture, assigns implementation responsibilities, and oversees the solution.
