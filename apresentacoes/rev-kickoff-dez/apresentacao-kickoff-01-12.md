@@ -43,7 +43,7 @@ Apresentar a nova dinâmica de reuniões mensais ("Board Consultivo"), alinhar o
 > Dia 08: Vertical XYZ (Docs) abre a rodada.
 > Dia 15: Comex.
 > Dia 22: Hyperize.
-> Dia 29: Fechamento Geral e Planejamento 2026."
+> Dia 29: **RGA (Reunião Geral)**. Aqui não olhamos o individual. Olhamos o **Farol do OKR Trimestral**. Vamos sair desta reunião com a **Guerra do Mês** definida: a única prioridade que vai destravar o resultado."
 
 ### Slide 6: O Padrão Esperado (The Gold Standard)
 > "Para encerrar, quero deixar claro o nível de jogo que esperamos.
